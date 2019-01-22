@@ -6,7 +6,6 @@ provider "azurerm" {
 }
 
 locals {
-  //create_api = "${var.env != "preview" && var.env != "spreview"}"
 
   # list of the thumbprints of the SSL certificates that should be accepted by the API (gateway)
   allowed_certificate_thumbprints = [
