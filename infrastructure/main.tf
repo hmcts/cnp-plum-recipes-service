@@ -15,7 +15,7 @@ locals {
   thumbprints_in_quotes = "${formatlist("&quot;%s&quot;", local.allowed_certificate_thumbprints)}"
   thumbprints_in_quotes_str = "${join(",", local.thumbprints_in_quotes)}"
   api_policy = "${replace(file("template/api-policy.xml"), "ALLOWED_CERTIFICATE_THUMBPRINTS", local.thumbprints_in_quotes_str)}"
-  api_base_path = "rhubarb-recipes-api"
+  api_base_path = "plum-recipes-api"
 }
 
 module "recipe-backend" {
@@ -109,8 +109,8 @@ resource "azurerm_template_deployment" "api" {
 
   parameters = {
     apiManagementServiceName  = "core-api-mgmt-${var.env}"
-    apiName                   = "rhubarb-recipes-api"
-    apiProductName            = "rhubarb-recipes"
+    apiName                   = "plum-recipes-api"
+    apiProductName            = "plum-recipes"
     serviceUrl                = "http://${var.product}-${local.app}-${var.env}.service.core-compute-${var.env}.internal"
     apiBasePath               = "${local.api_base_path}"
     policy                    = "${local.api_policy}"
