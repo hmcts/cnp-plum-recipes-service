@@ -2,16 +2,16 @@
 version: '2.2'
 
 services:
-  plum-recipes-service:
+  rhubarb-recipes-service:
     build:
       context: .
     cpus: 2.5
     mem_limit: 1024M
     environment:
       POSTGRES_HOST: postgres
-      POSTGRES_DATABASE: plumdb
-      POSTGRES_USER: plumuser
-      POSTGRES_PASSWORD: plumpassword
+      POSTGRES_DATABASE: rhubarbdb
+      POSTGRES_USER: rhubarbuser
+      POSTGRES_PASSWORD: rhubarbpassword
       POSTGRES_SSL_MODE: disable
       JAVA_OPTS:
     ports:
@@ -19,6 +19,6 @@ services:
   postgres:
    image: postgres:10-alpine
    environment:
-     POSTGRES_USER: plumuser
-     POSTGRES_PASSWORD: plumpassword
-     POSTGRES_DB: plumbdb
+     POSTGRES_USER: rhubarbuser
+     POSTGRES_PASSWORD: rhubarbpassword
+     POSTGRES_DB: rhubarbdb
