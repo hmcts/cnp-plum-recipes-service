@@ -9,5 +9,5 @@ output "api_gateway_url" {
 }
 
 output "vaultName" {
-  value = "${module.key-vault.key_vault_name}"
+  value = "${data.azurerm_key_vault.key_vault.vaultName}"
 }
