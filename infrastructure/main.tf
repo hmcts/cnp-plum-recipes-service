@@ -15,9 +15,13 @@ locals {
   thumbprints_in_quotes = "${formatlist("&quot;%s&quot;", local.allowed_certificate_thumbprints)}"
   thumbprints_in_quotes_str = "${join(",", local.thumbprints_in_quotes)}"
   api_policy = "${replace(file("template/api-policy.xml"), "ALLOWED_CERTIFICATE_THUMBPRINTS", local.thumbprints_in_quotes_str)}"
+<<<<<<< HEAD
   api_base_path = "plum-recipes-api"
   vault_name = "${var.product}si-${var.env}"
   shared_infra_rg = "${var.product}-shared-infrastructure-${var.env}"
+=======
+  api_base_path = "rhubarb-recipes-api"
+>>>>>>> parent of eb34a77... `rhubarb` product name changed into `plum`
 }
 
 module "recipe-backend" {
@@ -105,8 +109,8 @@ resource "azurerm_template_deployment" "api" {
 
   parameters = {
     apiManagementServiceName  = "core-api-mgmt-${var.env}"
-    apiName                   = "plum-recipes-api"
-    apiProductName            = "plum-recipes"
+    apiName                   = "rhubarb-recipes-api"
+    apiProductName            = "rhubarb-recipes"
     serviceUrl                = "http://${var.product}-${local.app}-${var.env}.service.core-compute-${var.env}.internal"
     apiBasePath               = "${local.api_base_path}"
     policy                    = "${local.api_policy}"

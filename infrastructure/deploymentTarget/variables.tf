@@ -1,6 +1,6 @@
 variable "product" {
   type    = "string"
-  default = "plum"
+  default = "rhubarb"
 }
 
 variable "location" {
