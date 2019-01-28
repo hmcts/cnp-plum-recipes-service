@@ -23,7 +23,7 @@ locals {
 }
 
 module "recipe-backend" {
-  source       = "git@github.com:hmcts/cnp-module-webapp?ref=cnp-1094-dt"
+  source       = "git@github.com:hmcts/cnp-module-webapp?ref=master"
   product      = "${var.product}-${local.app}"
   location     = "${var.location}"
   env          = "${var.env}"
