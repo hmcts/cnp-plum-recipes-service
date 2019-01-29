@@ -30,6 +30,6 @@ withPipeline(type, product, component) {
   enablePerformanceTest()
   //enableApiGatewayTest()
   onNonPR() {
-    //loadVaultSecrets(apiTestSecrets)
+    loadVaultSecrets(apiTestSecrets)
   }
 }
