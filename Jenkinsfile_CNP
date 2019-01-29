@@ -1,6 +1,7 @@
 #!groovy
 
-@Library("Infrastructure")
+//@Library("Infrastructure")
+@Library('Infrastructure@deployment-target-spike') 
 
 def type = "java"
 def product = "plum"
