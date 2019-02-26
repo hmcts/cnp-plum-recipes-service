@@ -29,4 +29,11 @@ public class RecipesTest {
     recipes_list_returns_200() {
         get("/recipes").then().statusCode(200);
     }
+
+    @Test
+    public void
+    test_property_returns_200() {
+        get("/testproperties").then().statusCode(200);
+    }
+
 }

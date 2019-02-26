@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    propertiesvolume:
+      enabled: true
+      prefixed: true
+      paths: /mnt/secrets/cnp-core-infra/test
+      aliases:
+        cnp-core-infra.test: CORE_INFRA_TEST

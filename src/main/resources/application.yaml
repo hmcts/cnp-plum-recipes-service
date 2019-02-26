@@ -33,3 +33,6 @@ management:
       base-path: "/"
   security:
     enabled: false
+
+external:
+  test: ${CORE_INFRA_TEST}

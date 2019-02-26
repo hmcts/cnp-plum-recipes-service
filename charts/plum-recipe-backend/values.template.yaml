@@ -9,6 +9,11 @@ java:
   # Don't modify below here
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
+keyVaults:
+  "infra-vault-nonprod":
+    resourceGroup: cnp-core-infra
+    secrets:
+      - test
 
 postgresql:
   postgresqlUsername: hmcts
