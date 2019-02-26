@@ -12,6 +12,7 @@ java:
   keyVaults:
     "infra-vault-nonprod":
       resourceGroup: cnp-core-infra
+      excludeEnvironmentSuffix: true
       secrets:
         - test
 
