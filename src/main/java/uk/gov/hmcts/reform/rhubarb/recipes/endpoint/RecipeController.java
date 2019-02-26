@@ -64,7 +64,7 @@ public class RecipeController {
     }
 
     @GetMapping(path = "/testproperties")
-    @ApiOperation(value = "Return sha256 of test property", notes = "Returns an empty string when no property value found")
+    @ApiOperation(value = "Return first character of test property values", notes = "Returns an error when no property values found")
     @ApiResponses({
         @ApiResponse(code = 200, message = "Success"),
     })
@@ -82,7 +82,10 @@ public class RecipeController {
         if (Strings.isNullOrEmpty(testPropRef)) {
             throw new NoPropertyFoundException("external.test not found");
         }
-        return "Found values for cnp-core-infra.test, CORE_INFRA_TEST and external.test";
+        return String.format(
+            "Found values for cnp-core-infra.test (%s), CORE_INFRA_TEST (%s) and external.test %s)",
+            testProp.substring(0,1), testPropAlias.substring(0,1), testPropRef.substring(0,1)
+        );
     }
 
 }
