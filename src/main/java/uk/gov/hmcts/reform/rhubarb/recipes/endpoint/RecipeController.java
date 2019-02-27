@@ -69,7 +69,7 @@ public class RecipeController {
         @ApiResponse(code = 200, message = "Success"),
     })
     public String readTestProperty(
-        @Value("${cnp-core-infra.test}") String testProp,
+        @Value("${infra-vault-nonprod.test}") String testProp,
         @Value("${CORE_INFRA_TEST}") String testPropAlias,
         @Value("${external.test}") String testPropRef
     ) {

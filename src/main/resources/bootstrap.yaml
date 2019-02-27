@@ -3,6 +3,6 @@ spring:
     propertiesvolume:
       enabled: true
       prefixed: true
-      paths: /mnt/secrets/cnp-core-infra/test
+      paths: /mnt/secrets/infra-vault-nonprod/test
       aliases:
-        cnp-core-infra.test: CORE_INFRA_TEST
+        infra-vault-nonprod.test: CORE_INFRA_TEST
