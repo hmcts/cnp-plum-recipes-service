@@ -33,7 +33,7 @@ public class RecipesTest {
     @Test
     public void
     test_property_returns_200() {
-        get("/testproperties").then().statusCode(200);
+        get("/recipes/testproperties").then().statusCode(200);
     }
 
 }

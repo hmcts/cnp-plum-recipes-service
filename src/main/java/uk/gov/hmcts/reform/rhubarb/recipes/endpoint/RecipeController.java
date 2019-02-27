@@ -74,7 +74,7 @@ public class RecipeController {
         @Value("${external.test}") String testPropRef
     ) {
         if (Strings.isNullOrEmpty(testProp)) {
-            throw new NoPropertyFoundException("cnp-core-infra.test not found");
+            throw new NoPropertyFoundException("infra-vault-nonprod.test not found");
         }
         if (Strings.isNullOrEmpty(testPropAlias)) {
             throw new NoPropertyFoundException("CORE_INFRA_TEST not found");
@@ -83,7 +83,7 @@ public class RecipeController {
             throw new NoPropertyFoundException("external.test not found");
         }
         return String.format(
-            "Found values for cnp-core-infra.test (%s), CORE_INFRA_TEST (%s) and external.test %s)",
+            "Found values for infra-vault-nonprod.test (%s), CORE_INFRA_TEST (%s) and external.test %s)",
             testProp.substring(0,1), testPropAlias.substring(0,1), testPropRef.substring(0,1)
         );
     }
