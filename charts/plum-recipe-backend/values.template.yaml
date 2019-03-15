@@ -7,7 +7,7 @@ java:
     POSTGRES_USER: hmcts
     POSTGRES_PASSWORD: hmcts
   # Don't modify below here
-  image: ${IMAGE_NAME}
+  image: ${IMAGE_NAM}
   ingressHost: ${SERVICE_FQDN}
 
 postgresql:
