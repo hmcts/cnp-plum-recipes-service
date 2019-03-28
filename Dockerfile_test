@@ -1,0 +1,26 @@
+FROM openjdk:8u201-jdk-alpine3.9
+
+ENV APP_USER hmcts
+
+#ONBUILD ARG JAVA_OPTS
+#ONBUILD ENV JAVA_OPTS=$JAVA_OPTS
+
+RUN addgroup -g 1000 -S $APP_USER \
+  && adduser -u 1000 -S $APP_USER -G $APP_USER \
+  && mkdir -p /opt/app \
+  && chown -R $APP_USER:$APP_USER /opt/app
+
+WORKDIR /opt/app
+USER $APP_USER
+
+COPY --chown=1000:1000 gradlew runTests.sh build.gradle /opt/app/
+COPY --chown=1000:1000 .gradle /opt/app/.gradle/
+COPY --chown=1000:1000 gradle /opt/app/gradle/
+COPY --chown=1000:1000 src /opt/app/src/
+COPY --chown=1000:1000 build /opt/app/build/
+
+
+ENTRYPOINT ["./gradlew", "--info", "--rerun-tasks"]
+
+# functional, smoke, apiGateway
+CMD ["functional"]
