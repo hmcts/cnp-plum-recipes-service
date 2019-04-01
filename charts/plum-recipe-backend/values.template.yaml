@@ -7,6 +7,7 @@ java:
     POSTGRES_USER: hmcts
     POSTGRES_PASSWORD: hmcts
   postgresql:
+    enabled: true
     postgresqlUsername: hmcts
     postgresqlPassword: hmcts
     postgresqlDatabase: plum
