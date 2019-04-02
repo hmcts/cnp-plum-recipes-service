@@ -1,10 +1,5 @@
 java:
   applicationPort: 4550
-  postgresql:
-    enabled: true
-    postgresqlUsername: hmcts
-    postgresqlPassword: hmcts
-    postgresqlDatabase: plum
   environment:
     POSTGRES_HOST: ${SERVICE_NAME}-postgresql
     POSTGRES_SSL_MODE: disable
@@ -14,3 +9,9 @@ java:
   # Don't modify below here
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
+
+postgresql:
+  enabled: true
+  postgresqlUsername: hmcts
+  postgresqlPassword: hmcts
+  postgresqlDatabase: plum
