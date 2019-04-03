@@ -10,8 +10,8 @@ java:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
 
-postgresql:
-  enabled: true
-  postgresqlUsername: hmcts
-  postgresqlPassword: hmcts
-  postgresqlDatabase: plum
+  postgresql:
+    enabled: true
+    postgresqlUsername: hmcts
+    postgresqlPassword: hmcts
+    postgresqlDatabase: plum
