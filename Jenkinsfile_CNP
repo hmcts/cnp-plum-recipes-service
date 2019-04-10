@@ -2,6 +2,7 @@
 
 @Library("Infrastructure@features/owasptest")
 
+
 def type = "java"
 def product = "plum"
 def component = "recipe-backend"
