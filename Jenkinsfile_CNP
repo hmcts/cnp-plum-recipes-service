@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure")
+@Library("Infrastructure@feature/testowasp")
 
 def type = "java"
 def product = "plum"
