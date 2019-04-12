@@ -157,7 +157,8 @@ public class GetAllRecipesTest {
 
         try (
             InputStream keyStoreStream =
-                Thread.currentThread().getContextClassLoader().getResourceAsStream("unrecognised-client-certificate.pfx")
+                Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream("unrecognised-client-certificate.pfx")
         ) {
             // loading from null stream would cause a quiet failure
             assertThat(keyStoreStream).isNotNull();

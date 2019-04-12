@@ -4,16 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Recipe {
 
-    public final String id;
-
+    private final String id;
     @JsonIgnore
-    public final String userId;
-
-    public final String name;
-
-    public final String ingredients;
-
-    public final String method;
+    private final String userId;
+    private final String name;
+    private final String ingredients;
+    private final String method;
 
     public Recipe(
         String id,
@@ -27,5 +23,25 @@ public class Recipe {
         this.name = name;
         this.ingredients = ingredients;
         this.method = method;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public String getMethod() {
+        return method;
     }
 }

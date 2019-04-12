@@ -25,7 +25,7 @@ import java.util.Map;
 )
 public class RecipeController {
 
-    private final RecipeStore recipeStore;
+    private final transient RecipeStore recipeStore;
 
     public RecipeController(RecipeStore recipeStore) {
         this.recipeStore = recipeStore;
