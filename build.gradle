@@ -145,3 +145,8 @@ sonarqube {
     property "sonar.projectKey", "cnp-plum-recipes-service"
   }
 }
+
+wrapper {
+  distributionType = Wrapper.DistributionType.ALL
+}
+
