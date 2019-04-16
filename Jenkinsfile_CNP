@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure")
+@Library("Infrastructure@fix-auto-deploy-boolean")
 
 def type = "java"
 def product = "plum"
