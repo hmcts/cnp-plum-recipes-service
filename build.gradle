@@ -67,7 +67,6 @@ dependencyManagement {
       entry 'tomcat-embed-websocket'
     }
   }
-}
 
 dependencies {
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
