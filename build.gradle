@@ -61,13 +61,14 @@ repositories {
 }
 
 dependencyManagement {
+dependencies{
     dependencySet(group: 'org.apache.tomcat.embed', version: '9.0.19') {
       entry 'tomcat-embed-core'
       entry 'tomcat-embed-el'
       entry 'tomcat-embed-websocket'
     }
   }
-
+}
 dependencies {
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: springBootVersion
