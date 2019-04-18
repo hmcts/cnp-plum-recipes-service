@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@features/refactoraksconfig")
+@Library("Infrastructure")
 
 def type = "java"
 def product = "plum"
