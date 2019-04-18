@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class RecipeStore {
 
-    private final transient NamedParameterJdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate jdbcTemplate; // NOPMD no need for accessors here
 
     public RecipeStore(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
