@@ -3,7 +3,7 @@ plugins {
   id 'checkstyle'
   id 'pmd'
   id 'jacoco'
-  id 'io.spring.dependency-management' version '1.0.6.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.7.RELEASE'
   id 'org.flywaydb.flyway' version '5.1.4'
   id 'org.springframework.boot' version '2.1.4.RELEASE'
   id 'org.owasp.dependencycheck' version '4.0.2'
@@ -22,6 +22,10 @@ checkstyle {
   toolVersion = '8.2'
   configFile = new File(rootDir, "checkstyle.xml")
   maxWarnings = 0
+}
+
+ext {
+  lombokVersion = '1.18.6'
 }
 
 // https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
@@ -49,6 +53,17 @@ repositories {
   }
 }
 
+dependencyManagement {
+  dependencies {
+    // CVE-2019-0232 - command line injections on windows
+    dependencySet(group: 'org.apache.tomcat.embed', version: '9.0.19') {
+      entry 'tomcat-embed-core'
+      entry 'tomcat-embed-el'
+      entry 'tomcat-embed-websocket'
+    }
+  }
+}
+
 dependencies {
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: springBootVersion
@@ -68,6 +83,8 @@ dependencies {
   // needed for app insights
   compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
 
+  compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+  annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
   testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion
   testCompile group: 'io.rest-assured', name: 'rest-assured', version: '3.3.0'
