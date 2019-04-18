@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure")
+@Library("Infrastructure@features/owasppostgres")
 
 def type = "java"
 def product = "plum"
