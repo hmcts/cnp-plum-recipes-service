@@ -24,12 +24,6 @@ spring:
     testOnBorrow: true
     validationQuery: SELECT 1
 
-azure:
-  application-insights:
-    channel:
-      in-process:
-        developer-mode: true
-
 management:
   endpoint:
     health:
