@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@feature/RPE-1069-add-java-version-detection")
+@Library("Infrastructure")
 
 def type = "java"
 def product = "plum"
