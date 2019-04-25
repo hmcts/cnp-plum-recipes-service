@@ -27,8 +27,8 @@ withPipeline(type, product, component) {
   enableDockerBuild()
   installCharts()
   enablePerformanceTest()
-  //enableApiGatewayTest()
   enableAksStagingDeployment()
+  enableApiGatewayTest()
   onNonPR() {
     loadVaultSecrets(apiTestSecrets)
   }
