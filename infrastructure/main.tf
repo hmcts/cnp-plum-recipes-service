@@ -115,8 +115,8 @@ resource "azurerm_template_deployment" "api" {
 
   parameters = {
     apiManagementServiceName = "core-api-mgmt-${var.env}"
-    apiName                  = "plum-recipes-api"
-    apiProductName           = "plum-recipes"
+    apiName                  = "${var.product}-recipes-api"
+    apiProductName           = "${var.product}-recipes"
     serviceUrl               = "http://${var.product}-${local.app}-${var.env}.service.core-compute-${var.env}.internal"
     apiBasePath              = "${local.api_base_path}"
     policy                   = "${local.api_policy}"
