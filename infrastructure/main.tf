@@ -57,33 +57,33 @@ data "azurerm_key_vault_secret" "appInsights-InstrumentationKey" {
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-USER" {
-  name      = "recipe-backend-POSTGRES-USER"
-  value     = "${module.recipe-database.user_name}"
-  vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
+  name         = "recipe-backend-POSTGRES-USER"
+  value        = "${module.recipe-database.user_name}"
+  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-PASS" {
-  name      = "recipe-backend-POSTGRES-PASS"
-  value     = "${module.recipe-database.postgresql_password}"
-  vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
+  name         = "recipe-backend-POSTGRES-PASS"
+  value        = "${module.recipe-database.postgresql_password}"
+  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_HOST" {
-  name      = "recipe-backend-POSTGRES-HOST"
-  value     = "${module.recipe-database.host_name}"
-  vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
+  name         = "recipe-backend-POSTGRES-HOST"
+  value        = "${module.recipe-database.host_name}"
+  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_PORT" {
-  name      = "recipe-backend-POSTGRES-PORT"
-  value     = "${module.recipe-database.postgresql_listen_port}"
-  vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
+  name         = "recipe-backend-POSTGRES-PORT"
+  value        = "${module.recipe-database.postgresql_listen_port}"
+  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
-  name      = "recipe-backend-POSTGRES-DATABASE"
-  value     = "${module.recipe-database.postgresql_database}"
-  vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
+  name         = "recipe-backend-POSTGRES-DATABASE"
+  value        = "${module.recipe-database.postgresql_database}"
+  key_vault_id = "${data.azurerm_key_vault.key_vault.id}"
 }
 
 module "recipe-database" {
