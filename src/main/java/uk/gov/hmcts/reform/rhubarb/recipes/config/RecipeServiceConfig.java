@@ -12,4 +12,5 @@ public class RecipeServiceConfig {
     public RecipeStore recipeStore(NamedParameterJdbcTemplate jdbcTemplate) {
         return new RecipeStore(jdbcTemplate);
     }
+
 }
