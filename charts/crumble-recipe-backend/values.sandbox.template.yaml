@@ -2,7 +2,7 @@ java:
   # Don't modify below here
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
-  aadIdentityName: rpe
+  aadIdentityName: cnp
   environment:
     POSTGRES_SSL_MODE: require
   keyVaults:
