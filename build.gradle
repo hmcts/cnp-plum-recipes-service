@@ -65,16 +65,21 @@ dependencyUpdates.resolutionStrategy = {
   }
 }
 
-dependencyManagement {
-  dependencies {
-    // CVE-2019-12814
-    dependencySet(group: 'com.fasterxml.jackson.core', version: '2.9.9.1') {
-      entry 'jackson-databind'
+ext["rest-assured.version"] = '4.0.0'
+
+configurations.all {
+  resolutionStrategy {
+    eachDependency { DependencyResolveDetails details ->
+      if (details.requested.group in ['com.fasterxml.jackson.core', 'com.fasterxml.jackson.module', 'com.fasterxml.jackson.datatype']) {
+        details.useVersion '2.9.9'
+      }
+      
+      if (details.requested.name == 'jackson-databind') {
+        details.useVersion '2.9.9.1'
+      }
     }
   }
 }
-
-ext["rest-assured.version"] = '4.0.0'
 
 dependencies {
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
@@ -85,6 +90,8 @@ dependencies {
   compile group: 'org.flywaydb', name: 'flyway-core', version: '5.2.4'
   compile group: 'uk.gov.hmcts.reform', name: 'health-spring-boot-starter', version: '0.0.4'
   compile group: 'uk.gov.hmcts.reform', name: 'properties-volume-spring-boot-starter', version: '0.0.4'
+
+  compile group: 'com.google.guava', name: 'guava', version: '28.0-jre'
   
   compile group: 'uk.gov.hmcts.reform', name: 'java-logging', version: javaLoggingVersion
   compile group: 'uk.gov.hmcts.reform', name: 'java-logging-appinsights', version: javaLoggingVersion
