@@ -31,9 +31,7 @@ properties([
 
 withParameterizedPipeline(params.TYPE, params.PRODUCT_NAME, params.APP, params.ENVIRONMENT, params.SUBSCRIPTION) {
   //enableApiGatewayTest()
-  enableDockerBuild()
-  installCharts()
-  enableAksStagingDeployment()
+  enableSlackNotifications("#build-test")
   setVaultName("plum")
   onNonPR() {
     //loadVaultSecrets(apiTestSecrets)
