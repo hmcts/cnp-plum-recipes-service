@@ -33,6 +33,7 @@ withParameterizedPipeline(params.TYPE, params.PRODUCT_NAME, params.APP, params.E
   //enableApiGatewayTest()
   enableSlackNotifications("#build-test")
   setVaultName("plum")
+  enableDeployToAKS()
   onNonPR() {
     //loadVaultSecrets(apiTestSecrets)
   }
