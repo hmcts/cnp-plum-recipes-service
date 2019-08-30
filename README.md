@@ -194,6 +194,7 @@ retrieved one, save it in Azure Key Vault:
 az keyvault secret set --vault-name rhubarb-{environment} --name test-client-subscription-key --value {the subscription key}
 ```
 
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
