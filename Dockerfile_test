@@ -2,16 +2,22 @@ FROM hmctspublic.azurecr.io/base/java:openjdk-11-debug-distroless-1.2
 
 ENV APP_USER hmcts
 
+ONBUILD ARG TEST_URL
+ONBUILD ENV TEST_URL=$TEST_URL
+
+ONBUILD ARG TEST_HEALTH_URL
+ONBUILD ENV TEST_HEALTH_URL=$TEST_HEALTH_URL
+
+# smoke or functional
+ONBUILD ARG TASK
+ONBUILD ENV TASK=${TASK:-smoke}
+
 WORKDIR /opt/app
 USER $APP_USER
 
-COPY --chown=$APP_USER:$APP_USER gradlew build.gradle /opt/app/
+COPY --chown=$APP_USER:$APP_USER runTests.sh gradlew build.gradle /opt/app/
 COPY --chown=$APP_USER:$APP_USER .gradle /opt/app/.gradle/
 COPY --chown=$APP_USER:$APP_USER gradle /opt/app/gradle/
 COPY --chown=$APP_USER:$APP_USER src /opt/app/src/
 
-
-ENTRYPOINT ["./gradlew", "--info", "--rerun-tasks"]
-
-# functional, smoke, apiGateway
-CMD ["smoke"]
+ENTRYPOINT ["./runTests.sh"]
