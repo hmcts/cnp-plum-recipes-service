@@ -2,7 +2,8 @@
 
 [ "$TEST_HEATH_URL" == "" ] && echo "Error: cannot find TEST_HEALTH_URL env var." && exit 1
 [ "$TEST_URL" == "" ] && echo "Error: cannot find TEST_URL env var." && exit 1
-[ "$TASK" == "" ] && echo "Error: cannot find TASK env var. It should be 'smoke' or 'functional'" && exit 1
+# smoke or functional
+[ "$TASK" == "" ] && TASK="smoke"
 
 _healthy="false"
 
