@@ -1,7 +1,9 @@
 #!/bin/sh
 
-[ "$TEST_HEATH_URL" == "" ] && echo "Error: cannot find TEST_HEALTH_URL env var." && exit 1
 [ "$TEST_URL" == "" ] && echo "Error: cannot find TEST_URL env var." && exit 1
+
+[ "$TEST_HEATH_URL" == "" ] && TEST_HEALTH_URL="${TEST_URL}/health"
+
 # smoke or functional
 [ "$TASK" == "" ] && TASK="smoke"
 
