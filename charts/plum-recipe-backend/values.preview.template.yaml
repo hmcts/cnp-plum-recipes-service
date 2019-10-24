@@ -7,9 +7,9 @@ postgresql:
   persistence:
     enabled: false
   ## Default Postgres Configuration parameters
-  postgresqlUsername: javapostgres
-  postgresqlPassword: javapassword
-  postgresqlDatabase: javadatabase
+  postgresqlUsername: hmcts
+  postgresqlPassword: hmcts
+  postgresqlDatabase: bulk_scan
   enabled: false #java chart postgres disabled
   initdbScripts:
     init.sql: |-
