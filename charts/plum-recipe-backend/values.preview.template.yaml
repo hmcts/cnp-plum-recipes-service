@@ -1,9 +1,12 @@
-java:
-  # Don't modify below here
-  image: ${IMAGE_NAME}
-  ingressHost: ${SERVICE_FQDN}
 postgresql:
-  enabled: true
+  ## Disable Postgres Persistence
+  persistence:
+    enabled: false
+  ## Default Postgres Configuration parameters
+  postgresqlUsername: javapostgres
+  postgresqlPassword: javapassword
+  postgresqlDatabase: javadatabase
+  enabled: false #java chart postgres disabled
   initdbScripts:
     init.sql: |-
       CREATE DATABASE "data-store" WITH OWNER = hmcts ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
@@ -45,3 +48,7 @@ bulkscan:
     enabled: true
   postgresql:
     enabled: false
+
+plum:
+  postgresql:
+    enabled: true
