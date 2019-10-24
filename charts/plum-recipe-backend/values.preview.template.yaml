@@ -9,7 +9,7 @@ postgresql:
   ## Default Postgres Configuration parameters
   postgresqlUsername: hmcts
   postgresqlPassword: hmcts
-  postgresqlDatabase: bulk_scan
+  postgresqlDatabase: plum
   enabled: false #java chart postgres disabled
   initdbScripts:
     init.sql: |-
