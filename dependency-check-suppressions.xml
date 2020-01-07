@@ -28,6 +28,7 @@
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed.*$</packageUrl>
     <cve>CVE-2019-17563</cve>
+    <cve>CVE-2019-12418</cve>
   </suppress>
 
 </suppressions>
