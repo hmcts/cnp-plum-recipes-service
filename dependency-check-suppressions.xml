@@ -38,6 +38,6 @@
    <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring\-security\-crypto@.*$</packageUrl>
    <cpe>cpe:/a:pivotal_software:spring_security</cpe>
    <cve>CVE-2020-5398</cve>
-</suppress>
+  </suppress>
 
 </suppressions>
