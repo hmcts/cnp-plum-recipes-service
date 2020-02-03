@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure") _
+@Library("Infrastructure@test-slack-notify-success") _
 
 def type = "java"
 def product = "plum"
@@ -37,5 +37,5 @@ withPipeline(type, product, component) {
   //   currentBuild.description = "Success!"
   //   error 'Plun wont be built on prod environment yet.'
   // }
-  
+
 }
