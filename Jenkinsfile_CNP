@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure") _
+@Library("Infrastructure@point-to-dev-for-testing") _
 
 def type = "java"
 def product = "plum"
