@@ -91,7 +91,7 @@ module "api" {
   product_id    = "${module.plum_product.product_id}"
   path          = local.api_base_path
   service_url   = "http://${var.product}-${local.app}-${var.env}.service.core-compute-${var.env}.internal"
-  swagger_url   = "/recipes"
+  swagger_url   = "{ "displayName": "Read all recipes", "method": "GET", "urlTemplate": "/recipes", "description": "Returns all existing recipes" }"
 }
 
 data "template_file" "plum_api_policy_template" {
