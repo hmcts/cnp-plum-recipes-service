@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.rhubarb.swagger;
+package uk.gov.hmcts.reform.rhubarb.recipes;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
