@@ -72,13 +72,13 @@ module "recipe-database" {
 
 # region API (gateway)
 module "api" {
-  source                 = "github.com/hmcts/cnp-module-api-mgmt-api?ref=master"
-  name                   = "${var.product}-recipes-api"
-  api_mgmt_rg            = "core-infra-${var.env}"
-  api_mgmt_name          = "core-api-mgmt-${var.env}"
-  display_name           = "${var.product}-recipes"
-  path                   = local.api_base_path
-  service_url            = "http://${var.product}-${local.app}-${var.env}.service.core-compute-${var.env}.internal"
+  source        = "github.com/hmcts/cnp-module-api-mgmt-api?ref=master"
+  name          = "${var.product}-recipes-api"
+  api_mgmt_rg   = "core-infra-${var.env}"
+  api_mgmt_name = "core-api-mgmt-${var.env}"
+  display_name  = "${var.product}-recipes"
+  path          = local.api_base_path
+  service_url   = "http://${var.product}-${local.app}-${var.env}.service.core-compute-${var.env}.internal"
 }
 
 data "template_file" "plum_api_policy_template" {
@@ -90,11 +90,9 @@ data "template_file" "plum_api_policy_template" {
 }
 
 module "policy" {
-  source = "github.com/hmcts/cnp-module-api-mgmt-api-policy?ref=master"
-
-  api_mgmt_name = "core-api-mgmt-${var.env}"
-  api_mgmt_rg   = "core-infra-${var.env}"
-
+  source                 = "github.com/hmcts/cnp-module-api-mgmt-api-policy?ref=master"
+  api_mgmt_name          = "core-api-mgmt-${var.env}"
+  api_mgmt_rg            = "core-infra-${var.env}"
   api_name               = module.api.name
   api_policy_xml_content = data.template_file.plum_api_policy_template.rendered
 }
