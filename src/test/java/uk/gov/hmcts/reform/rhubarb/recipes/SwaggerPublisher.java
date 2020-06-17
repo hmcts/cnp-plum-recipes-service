@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.rhubarb.swagger;
+package uk.gov.hmcts.reform.rhubarb.recipes;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -30,7 +30,7 @@ public class SwaggerPublisher {
     private WebApplicationContext webAppContext;
 
     @BeforeEach
-    public void setup() {
+    public void setUp() {
         this.mvc = webAppContextSetup(webAppContext).build();
     }
 

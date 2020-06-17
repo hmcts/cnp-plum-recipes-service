@@ -95,6 +95,7 @@ dependencies {
   compile group: 'uk.gov.hmcts.reform', name: 'logging', version: javaLoggingVersion
   compile group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: javaLoggingVersion
   compile group: 'io.springfox', name: 'springfox-swagger2', version: springfoxSwagger
+  compile group: 'io.springfox', name: 'springfox-swagger-ui', version: springfoxSwagger
 
   compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
@@ -165,6 +166,7 @@ sonarqube {
   properties {
     property "sonar.projectName", "cnp-plum-recipes-service"
     property "sonar.projectKey", "cnp-plum-recipes-service"
+     property "sonar.dependencyCheck.reportPath", "${project.buildDir}/reports/dependency-check-report.xml"
   }
 }
 
