@@ -174,7 +174,7 @@ sonarqube {
     property "sonar.projectName", "cnp-plum-recipes-service"
     property "sonar.projectKey", "cnp-plum-recipes-service"
     property "sonar.dependencyCheck.reportPath", "${project.buildDir}/reports/dependency-check-report.xml"
-    property "sonar.coverage.exclusions", "**/config/**"
+    property "sonar.coverage.exclusions", "**/config/**, **Exception**"
   }
 }
 
