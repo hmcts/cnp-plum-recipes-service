@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @SpringJUnitWebConfig
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SwaggerPublisher {
+class SwaggerPublisher {
 
     private transient MockMvc mvc;
 
@@ -30,7 +30,7 @@ public class SwaggerPublisher {
     private transient WebApplicationContext webAppContext;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         this.mvc = webAppContextSetup(webAppContext).build();
     }
 
