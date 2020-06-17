@@ -17,9 +17,9 @@ version = '0.0.1'
 pmd {
   toolVersion = "6.18.0"
   reportsDir = file("$project.buildDir/reports/pmd")
-  // https://github.com/pmd/pmd/issues/876
-  ruleSets = []
-  ruleSetFiles = files("config/pmd/ruleset.xml")
+  // // https://github.com/pmd/pmd/issues/876
+  // ruleSets = []
+  // ruleSetFiles = files("config/pmd/ruleset.xml")
 }
 
 sourceCompatibility = '11'
