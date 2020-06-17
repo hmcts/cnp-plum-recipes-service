@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.get;
 
 public class RecipesTest {
 
-    private static final Logger log = LoggerFactory.getLogger(RecipesTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RecipesTest.class);
 
     @BeforeEach
     public void before() {
@@ -21,10 +21,11 @@ public class RecipesTest {
 
         RestAssured.baseURI = appUrl;
         RestAssured.useRelaxedHTTPSValidation();
-        log.info("Base Url set to: " + RestAssured.baseURI);
+        LOGGER.info("Base Url set to: " + RestAssured.baseURI);
     }
 
     @Test
+    @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
     public void recipes_list_returns_200() {
         get("/recipes").then().statusCode(200);
     }

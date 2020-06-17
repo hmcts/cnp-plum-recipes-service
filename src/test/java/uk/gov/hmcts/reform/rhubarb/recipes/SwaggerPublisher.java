@@ -23,11 +23,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class SwaggerPublisher {
 
     @Autowired
+    @SuppressWarnings("PMD.BeanMembersShouldSerialize")
     private MockMvc mvc;
 
     @DisplayName("Generate swagger documentation")
     @Test
-    @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
     void generateDocs() throws Exception {
         byte[] specs = mvc.perform(get("/v2/api-docs"))
             .andExpect(status().isOk())
