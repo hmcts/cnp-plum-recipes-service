@@ -51,9 +51,7 @@ public class RecipeController {
     @ApiResponses({
         @ApiResponse(code = 200, message = "Success"),
     })
-    public RecipeList readAll(
-        @RequestParam(required = false) Map<String, String> params
-    ) {
+    public RecipeList readAll() {
 
         List<Recipe> recipes = recipeStore.readAll();
 
