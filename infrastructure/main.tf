@@ -95,20 +95,12 @@ module "api" {
   swagger_url   = "https://raw.githubusercontent.com/hmcts/reform-api-docs/master/docs/specs/cnp-plum-recipes-service.json"
 }
 
-data "template_file" "plum_api_policy_template" {
-  template = file("${path.module}/template/api-policy.xml")
-
-  vars = {
-    allowed_certificate_thumbprints = local.thumbprints_in_quotes_str
-  }
-}
-
 module "policy" {
   source                 = "git@github.com:hmcts/cnp-module-api-mgmt-api-policy?ref=master"
   api_mgmt_name          = "core-api-mgmt-${var.env}"
   api_mgmt_rg            = "core-infra-${var.env}"
   api_name               = "${module.api.name}"
-  api_policy_xml_content = "${data.template_file.plum_api_policy_template.rendered}"
+  api_policy_xml_content = "${local.api_policy}"
 }
 # endregion
 
