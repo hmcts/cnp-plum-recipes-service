@@ -56,6 +56,11 @@ resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
+resource "azurerm_resource_group" "test-pr-infra-plan" {
+  name     = "pr-infra-plan"
+  location = var.location
+}
+
 module "recipe-database" {
   source             = "git@github.com:hmcts/cnp-module-postgres?ref=master"
   product            = var.product
