@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@terraform-changes-on-pr") _
+@Library("Infrastructure@tf-plan-stage-name") _
 
 def type = "java"
 def product = "plum"
