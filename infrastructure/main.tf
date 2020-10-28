@@ -57,7 +57,7 @@ resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
 }
 
 module "recipe-database" {
-  source             = "git@github.com:hmcts/cnp-module-postgres?ref=master"
+  source             = "git@github.com:hmcts/cnp-module-postgres?ref=postgres_tf"
   product            = var.product
   location           = var.location
   env                = var.env
