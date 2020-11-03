@@ -10,3 +10,11 @@ dependencies:
   - name: java
     version: 3.0.2
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+  - name: postgresql
+    version: 8.9.8
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: camunda-bpm
+    version: 0.0.12
+    repository: '@hmctspublic'
+    condition: camunda-bpm.enabled

@@ -1,3 +1,9 @@
+postgresql:
+  enabled: false
+
+camunda-bpm:
+  enabled: false
+
 java:
   applicationPort: 4550
   readinessPath: '/health/readiness'
@@ -7,6 +13,5 @@ java:
     POSTGRES_DATABASE: "{{ .Values.postgresql.postgresqlDatabase}}"
     POSTGRES_USER: "{{ .Values.postgresql.postgresqlUsername}}"
     POSTGRES_PASSWORD: "{{ .Values.postgresql.postgresqlPassword}}"
-    DUMMY: "DummyVar2"
   # Don't modify below here
   image: 'https://hmctspublic.azurecr.io/plum/recipe-backend:latest'

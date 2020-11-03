@@ -12,3 +12,34 @@ java:
         - recipe-backend-POSTGRES-HOST
         - recipe-backend-POSTGRES-USER
         - recipe-backend-POSTGRES-PASS
+
+postgresql:
+  enabled: true
+  image:
+    tag: '11.3.0'
+  resources:
+    requests:
+      cpu: 25m
+  initdbScripts:
+    init.sql: |-
+      CREATE DATABASE "camunda" WITH OWNER = hmcts ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+
+  postgresqlUsername: hmcts
+  postgresqlPassword: hmcts
+  persistence:
+    enabled: false
+
+camunda-bpm:
+  enabled: true
+  java:
+    disableKeyVaults: true
+    releaseNameOverride: ${SERVICE_NAME}-camunda
+    ingressHost: camunda-${SERVICE_FQDN}
+    environment:
+      CAMUNDA_DB_HOST: ${SERVICE_NAME}-postgresql
+      CAMUNDA_DB_NAME: camunda
+      CAMUNDA_DB_USER_NAME: hmcts
+      CAMUNDA_DB_PASSWORD: hmcts
+      CAMUNDA_BPM_DATABASE_SCHEMA_UPDATE: true
+      S2S_URL: http://rpe-service-auth-provider-sandbox.service.core-compute-sandbox.internal
+      CAMUNDA_DB_CONN_OPTIONS: ""

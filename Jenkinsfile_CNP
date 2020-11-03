@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure") _
+@Library("Infrastructure@camunda-pipeline") _
 
 def type = "java"
 def product = "plum"
@@ -31,6 +31,9 @@ withPipeline(type, product, component) {
   onNonPR() {
     loadVaultSecrets(apiTestSecrets)
   }
+
+  enableCamunda('unspec-service')
+  
   // before('buildinfra:prod') {
   //   currentBuild.description = "Success!"
   //   error 'Plun wont be built on prod environment yet.'
