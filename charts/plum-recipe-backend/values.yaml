@@ -1,6 +1,3 @@
-postgresql:
-  enabled: false
-
 camunda-bpm:
   enabled: false
 
