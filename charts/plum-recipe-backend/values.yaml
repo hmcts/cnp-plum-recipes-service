@@ -1,3 +1,9 @@
+postgresql:
+  enabled: false
+
+camunda-bpm:
+  enabled: false
+
 java:
   applicationPort: 4550
   readinessPath: '/health/readiness'
