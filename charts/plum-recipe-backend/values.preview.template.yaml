@@ -4,21 +4,9 @@ java:
   ingressHost: ${SERVICE_FQDN}
   postgresql:
     enabled: true
-
-postgresql:
-  enabled: true
-  image:
-    tag: '11.3.0'
-  resources:
-    requests:
-      cpu: 25m
-  initdbScripts:
-    init.sql: |-
-      CREATE DATABASE "camunda" WITH OWNER = hmcts ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
-  postgresqlUsername: hmcts
-  postgresqlPassword: hmcts
-  persistence:
-    enabled: false
+    initdbScripts:
+      init.sql: |-
+        CREATE DATABASE "camunda" WITH OWNER = hmcts ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
 
 camunda-bpm:
   enabled: true
@@ -27,10 +15,9 @@ camunda-bpm:
     releaseNameOverride: ${SERVICE_NAME}-camunda
     ingressHost: camunda-${SERVICE_FQDN}
     environment:
-      CAMUNDA_DB_HOST: ${SERVICE_NAME}-postgresql
+      CAMUNDA_DB_HOST: "{{ .Release.Name }}-postgresql"
       CAMUNDA_DB_NAME: camunda
-      CAMUNDA_DB_USER_NAME: hmcts
-      CAMUNDA_DB_PASSWORD: hmcts
+      CAMUNDA_DB_USER_NAME: "{{ .Values.postgresql.postgresqlUsername}}"
+      CAMUNDA_DB_PASSWORD: "{{ .Values.postgresql.postgresqlPassword}}"
       CAMUNDA_BPM_DATABASE_SCHEMA_UPDATE: true
-      S2S_URL: http://rpe-service-auth-provider-aat.service.core-compute-aat.internal
       CAMUNDA_DB_CONN_OPTIONS: ""
