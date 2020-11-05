@@ -12,4 +12,4 @@ dependencies:
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
   - name: camunda-bpm
     version: 0.0.12
-    repository: https://hmctspublic.azurecr.io/helm/v1/repo/'
+    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
