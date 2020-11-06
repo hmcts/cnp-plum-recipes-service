@@ -1,17 +1,3 @@
-camunda-bpm:
-  enabled: true
-  java:
-    disableKeyVaults: true
-    releaseNameOverride: ${SERVICE_NAME}-camunda
-    ingressHost: camunda-${SERVICE_FQDN}
-    environment:
-      CAMUNDA_DB_HOST: "{{ .Release.Name }}-postgresql"
-      CAMUNDA_DB_NAME: camunda
-      CAMUNDA_DB_USER_NAME: "{{ .Values.postgresql.postgresqlUsername}}"
-      CAMUNDA_DB_PASSWORD: "{{ .Values.postgresql.postgresqlPassword}}"
-      CAMUNDA_BPM_DATABASE_SCHEMA_UPDATE: true
-      CAMUNDA_DB_CONN_OPTIONS: ""
-
 java:
   applicationPort: 4550
   readinessPath: '/health/readiness'
@@ -24,3 +10,6 @@ java:
     DUMMY: "DummyVar2"
   # Don't modify below here
   image: 'https://hmctspublic.azurecr.io/plum/recipe-backend:latest'
+
+camunda-bpm:
+  enabled: false

@@ -10,7 +10,3 @@ dependencies:
   - name: java
     version: 3.0.2
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
-  - name: camunda-bpm
-    version: 0.0.12
-    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
-    condition: camunda-bpm.enabled
