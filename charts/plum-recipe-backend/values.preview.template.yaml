@@ -6,7 +6,7 @@ java:
     enabled: true
     initdbScripts:
       init.sql: |-
-        CREATE DATABASE "camunda" WITH OWNER = hmcts ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+        CREATE DATABASE "camunda" WITH OWNER = "{{ .Values.postgresql.postgresqlUsername}}" ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
 
 camunda-bpm:
   enabled: true
@@ -20,8 +20,5 @@ camunda-bpm:
       CAMUNDA_DB_USER_NAME: "{{ .Values.postgresql.postgresqlUsername}}"
       CAMUNDA_DB_PASSWORD: "{{ .Values.postgresql.postgresqlPassword}}"
       CAMUNDA_BPM_DATABASE_SCHEMA_UPDATE: true
-      SPRING_FLYWAY_ENABLED: false
-      SPRING_CLOUD_PROPERTIESVOLUME_ENABLED: false
+      S2S_URL: http://rpe-service-auth-provider-aat.service.core-compute-aat.internal
       CAMUNDA_DB_CONN_OPTIONS: ""
-    postgresql:
-      enabled: true
