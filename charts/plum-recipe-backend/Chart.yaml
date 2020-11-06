@@ -9,7 +9,7 @@ maintainers:
 dependencies:
   - name: java
     version: 3.2.1
-    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+    repository: '@hmctspublic'
   - name: camunda-bpm
     version: 0.0.12
     repository: '@hmctspublic'
