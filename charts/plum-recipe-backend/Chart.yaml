@@ -13,4 +13,3 @@ dependencies:
   - name: camunda-bpm
     version: 0.0.12
     repository: '@hmctspublic'
-    condition: camunda-bpm.enabled
