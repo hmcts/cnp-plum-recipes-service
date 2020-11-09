@@ -2,11 +2,21 @@ java:
   # Don't modify below here
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
-  postgresql:
-    enabled: true
-    initdbScripts:
-      init.sql: |-
-        CREATE DATABASE "camunda" WITH OWNER = "{{ .Values.postgresql.postgresqlUsername}}" ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+
+postgresql:
+  enabled: true
+  image:
+    tag: '11.3.0'
+  resources:
+    requests:
+      cpu: 25m
+  initdbScripts:
+    init.sql: |-
+      CREATE DATABASE "camunda" WITH OWNER = "{{ .Values.postgresql.postgresqlUsername}}" ENCODING = 'UTF-8' CONNECTION LIMIT = -1;
+  postgresqlUsername: "{{ .Values.postgresql.postgresqlUsername}}"
+  postgresqlPassword: "{{ .Values.postgresql.postgresqlPassword}}"
+  persistence:
+    enabled: false
 
 camunda-bpm:
   enabled: true
