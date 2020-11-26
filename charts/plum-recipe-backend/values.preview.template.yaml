@@ -4,3 +4,7 @@ java:
   ingressHost: ${SERVICE_FQDN}
   postgresql:
     enabled: true
+  keyVaults:
+    "plumsi":
+      secrets:
+        - recipe-backend-POSTGRES-PASS-TEST
