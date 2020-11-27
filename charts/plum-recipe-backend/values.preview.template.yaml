@@ -4,6 +4,7 @@ java:
   ingressHost: ${SERVICE_FQDN}
   postgresql:
     enabled: true
+  aadIdentityName: plum-preview-mi
   keyVaults:
     "plumsi":
       secrets:
