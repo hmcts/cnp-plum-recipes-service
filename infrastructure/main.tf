@@ -72,6 +72,23 @@ module "recipe-database" {
   subscription       = var.subscription
 }
 
+module "recipe-database-v11" {
+  source             = "git@github.com:hmcts/cnp-module-postgres?ref=master"
+  product            = "${var.product}-v11"
+  name               = var.product
+  location           = var.location
+  env                = var.env
+  postgresql_user    = "rhubarbadmin-v11"
+  database_name      = "rhubarb-v11"
+  postgresql_version = "10"
+  sku_name           = "GP_Gen5_2"
+  sku_tier           = "GeneralPurpose"
+  storage_mb         = "51200"
+  common_tags        = var.common_tags
+  subscription       = var.subscription
+}
+
+
 # region API (gateway)
 
 module "plum_product" {
