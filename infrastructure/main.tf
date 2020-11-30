@@ -74,11 +74,11 @@ module "recipe-database" {
 
 module "recipe-database-v11" {
   source             = "git@github.com:hmcts/cnp-module-postgres?ref=master"
-  product            = "${var.product}-v11"
-  name               = var.product
+  product            = var.product
+  name               = "${var.product}-v11"
   location           = var.location
   env                = var.env
-  postgresql_user    = "rhubarbadmin-v11"
+  postgresql_user    = "rhubarbadmin"
   database_name      = "rhubarb-v11"
   postgresql_version = "10"
   sku_name           = "GP_Gen5_2"
