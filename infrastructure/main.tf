@@ -80,7 +80,7 @@ module "recipe-database-v11" {
   env                = var.env
   postgresql_user    = "rhubarbadmin"
   database_name      = "rhubarb-v11"
-  postgresql_version = "10"
+  postgresql_version = "11"
   sku_name           = "GP_Gen5_2"
   sku_tier           = "GeneralPurpose"
   storage_mb         = "51200"
