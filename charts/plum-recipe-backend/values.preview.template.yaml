@@ -4,9 +4,7 @@ java:
   ingressHost: ${SERVICE_FQDN}
   postgresql:
     enabled: true
-  environment:
-    POSTGRES_SSL_MODE: disable
-    POSTGRES_PASSWORD: "{{ .Values.postgresql.postgresqlPassword}}"
-    POSTGRES_DATABASE: "{{ .Values.postgresql.postgresqlDatabase }}"
-    POSTGRES_USER: "{{ .Values.postgresql.postgresqlUsername }}"
-    POSTGRES_HOST: "{{ .Release.Name }}-postgresql"
+  keyVaults:
+    "plumsi":
+      secrets:
+        - recipe-backend-POSTGRES-PASS-TEST

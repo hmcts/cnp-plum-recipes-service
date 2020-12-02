@@ -9,6 +9,7 @@ spring:
         plumsi.recipe-backend-POSTGRES-HOST: POSTGRES_HOST
         plumsi.recipe-backend-POSTGRES-USER: POSTGRES_USER
         plumsi.recipe-backend-POSTGRES-PASS: POSTGRES_PASSWORD
+        plumsi.recipe-backend-POSTGRES-PASS-TEST: POSTGRES_PASSWORD
         crumblesi.recipe-backend-POSTGRES-DATABASE: POSTGRES_DATABASE
         crumblesi.recipe-backend-POSTGRES-HOST: POSTGRES_HOST
         crumblesi.recipe-backend-POSTGRES-USER: POSTGRES_USER

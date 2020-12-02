@@ -4,4 +4,9 @@ java:
   # Don't modify below here
   image: 'hmctspublic.azurecr.io/plum/recipe-backend:latest'
   environment:
-    POSTGRES_SSL_MODE: require
+    POSTGRES_HOST: "{{ .Release.Name }}-postgresql"
+    POSTGRES_SSL_MODE: disable
+    POSTGRES_DATABASE: "{{ .Values.postgresql.postgresqlDatabase}}"
+    POSTGRES_USER: "{{ .Values.postgresql.postgresqlUsername}}"
+    DUMMY: "DummyVar2"
+  aadIdentityName: cnp
