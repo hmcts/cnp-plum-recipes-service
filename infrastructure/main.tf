@@ -73,7 +73,7 @@ module "recipe-database" {
 }
 
 module "recipe-database-v11" {
-  source             = "git@github.com:hmcts/cnp-module-postgres?ref=master"
+  source             = "git@github.com:hmcts/cnp-module-postgres?ref=postgresql_tf"
   product            = var.product
   name               = "${var.product}-v11"
   location           = var.location
