@@ -50,12 +50,6 @@ resource "azurerm_key_vault_secret" "POSTGRES_PORT" {
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
-resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
-  name         = "recipe-backend-POSTGRES-DATABASE"
-  value        = module.recipe-database.postgresql_database
-  key_vault_id = data.azurerm_key_vault.key_vault.id
-}
-
 resource "azurerm_key_vault_secret" "POSTGRES-USER-V11" {
   name         = "recipe-backend-POSTGRES-USER"
   value        = module.recipe-database-v11.user_name
@@ -80,12 +74,6 @@ resource "azurerm_key_vault_secret" "POSTGRES_PORT-V11" {
   key_vault_id = "${data.azurerm_key_vault.key_vault.id}-v11"
 }
 
-resource "azurerm_key_vault_secret" "POSTGRES_DATABASE-V11" {
-  name         = "recipe-backend-POSTGRES-DATABASE"
-  value        = module.recipe-database-v11.postgresql_database
-  key_vault_id = "${data.azurerm_key_vault.key_vault.id}-v11"
-}
-
 module "recipe-database" {
   source             = "git@github.com:hmcts/cnp-module-postgres?ref=master"
   product            = var.product
@@ -104,7 +92,7 @@ module "recipe-database" {
 
 module "recipe-database-v11" {
   source             = "git@github.com:hmcts/cnp-module-postgres?ref=postgresql_tf"
-  product            = "${var.product}-v11"
+  product            = var.product
   name               = "${var.product}-v11"
   location           = var.location
   env                = var.env
