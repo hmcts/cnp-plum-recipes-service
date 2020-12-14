@@ -21,6 +21,12 @@ locals {
   vault_name                = "${var.product}si-${var.env}"
 }
 
+data "azurerm_subnet" "postgres" {
+  name                 = "aks"
+  resource_group_name  = "core-infra-${var.env}"
+  virtual_network_name = "core-infra-vnet-${var.env}"
+}
+
 data "azurerm_key_vault" "key_vault" {
   name                = local.vault_name
   resource_group_name = local.shared_infra_rg
@@ -115,6 +121,8 @@ module "recipe-database-v11" {
   postgresql_user    = "rhubarbadmin"
   database_name      = "rhubarb-v11"
   postgresql_version = "11"
+
+  subnet_id          = data.azurerm_subnet.postgres.id
   sku_name           = "GP_Gen5_2"
   sku_tier           = "GeneralPurpose"
   storage_mb         = "51200"
