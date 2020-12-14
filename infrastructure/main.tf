@@ -28,7 +28,7 @@ locals {
 }
 
 data "azurerm_subnet" "postgres" {
-  name                 = "aks"
+  name                 = "recipe-postgres"
   resource_group_name  = "core-infra-${var.env}"
   virtual_network_name = "core-infra-vnet-${var.env}"
 }
