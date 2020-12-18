@@ -17,3 +17,7 @@ spring:
         toffee.recipe-backend-POSTGRES-HOST: POSTGRES_HOST
         toffee.recipe-backend-POSTGRES-USER: POSTGRES_USER
         toffee.recipe-backend-POSTGRES-PASS: POSTGRES_PASSWORD
+        plumsi.recipe-backend-POSTGRES-DATABASE-V11: POSTGRES_DATABASE
+        plumsi.recipe-backend-POSTGRES-HOST-v11: POSTGRES_HOST
+        plumsi.recipe-backend-POSTGRES-USER-v11: POSTGRES_USER
+        plumsi.recipe-backend-POSTGRES-PASS-v11: POSTGRES_PASSWORD

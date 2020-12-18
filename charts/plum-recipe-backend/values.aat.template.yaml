@@ -9,7 +9,7 @@ java:
     "plumsi":
       resourceGroup: plum-shared-infrastructure
       secrets:
-        - recipe-backend-POSTGRES-DATABASE
-        - recipe-backend-POSTGRES-HOST
-        - recipe-backend-POSTGRES-USER
-        - recipe-backend-POSTGRES-PASS
+        - recipe-backend-POSTGRES-DATABASE-v11
+        - recipe-backend-POSTGRES-HOST-v11
+        - recipe-backend-POSTGRES-USER-v11
+        - recipe-backend-POSTGRES-PASS-v11
