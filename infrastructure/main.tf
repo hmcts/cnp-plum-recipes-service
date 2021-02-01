@@ -27,11 +27,11 @@ locals {
   vault_name                = "${var.product}si-${var.env}"
 }
 
-data "azurerm_subnet" "postgres" {
-  name                 = "core-infra-subnet-0-${var.env}"
-  resource_group_name  = "core-infra-${var.env}"
-  virtual_network_name = "core-infra-vnet-${var.env}"
-}
+# data "azurerm_subnet" "postgres" {
+#   name                 = "core-infra-subnet-0-${var.env}"
+#   resource_group_name  = "core-infra-${var.env}"
+#   virtual_network_name = "core-infra-vnet-${var.env}"
+# }
 
 data "azurerm_key_vault" "key_vault" {
   name                = local.vault_name
