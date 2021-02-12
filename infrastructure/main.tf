@@ -28,7 +28,7 @@ locals {
 }
 
 data "azurerm_subnet" "postgres" {
-  name                 = "core-infra-subnet-0-${var.env}"
+  name                 = "aks"
   resource_group_name  = "core-infra-${var.env}"
   virtual_network_name = "core-infra-vnet-${var.env}"
 }
@@ -135,7 +135,6 @@ module "recipe-database-v11" {
   common_tags        = var.common_tags
   subscription       = var.subscription
 }
-
 
 # region API (gateway)
 
