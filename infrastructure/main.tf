@@ -115,11 +115,11 @@ module "recipe-database" {
 }
 
 module "recipe-database-v11" {
-  providers = {
-    azurerm             = azurerm
-    azurerm.private_dns = azurerm.private_dns
-  }
-  source             = "git@github.com:hmcts/cnp-module-postgres?ref=postgresql_tf"
+  # providers = {
+  #   azurerm             = azurerm
+  #   #azurerm.private_dns = azurerm.private_dns
+  # }
+  source             = "git@github.com:hmcts/cnp-module-postgres?ref=postgresql_tf_changes"
   product            = var.product
   name               = "${var.product}-v11"
   location           = var.location
