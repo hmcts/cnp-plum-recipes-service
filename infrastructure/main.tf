@@ -2,11 +2,11 @@ provider "azurerm" {
   features {}
 }
 
-provider "azurerm" {
-  features {}
-  alias           = "private_dns"
-  subscription_id = var.private_dns_subscription_id
-}
+# provider "azurerm" {
+#   features {}
+#   alias           = "private_dns"
+#   subscription_id = var.private_dns_subscription_id
+# }
 
 locals {
   app        = "recipe-backend"
@@ -114,11 +114,7 @@ module "recipe-database" {
   subscription       = var.subscription
 }
 
-module "recipe-database-v11" {
-  # providers = {
-  #   azurerm             = azurerm
-  #   #azurerm.private_dns = azurerm.private_dns
-  # }
+module "recipe-database-v11" { 
   source             = "git@github.com:hmcts/cnp-module-postgres?ref=postgresql_tf_changes"
   product            = var.product
   name               = "${var.product}-v11"
