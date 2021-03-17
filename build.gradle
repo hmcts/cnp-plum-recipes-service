@@ -45,7 +45,7 @@ dependencyCheck {
 }
 
 def springBootVersion = springBoot.class.package.implementationVersion
-def springfoxSwagger = '2.10.5'
+def springfoxSwagger = '2.9.2'
 def javaLoggingVersion = '5.1.7'
 
 repositories {
