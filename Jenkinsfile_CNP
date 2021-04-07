@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure") _
+@Library("Infrastructure@use-upstream-sonar") _
 
 def type = "java"
 def product = "plum"
