@@ -116,12 +116,12 @@ dependencies {
   compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
-  testimplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion, {
+  testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion, {
     exclude group: 'junit', module: 'junit'
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
-  testimplementation group: 'io.rest-assured', name: 'rest-assured'
-  testimplementation group: 'com.typesafe', name: 'config', version: '1.4.1'
+  testImplementation group: 'io.rest-assured', name: 'rest-assured'
+  testImplementation group: 'com.typesafe', name: 'config', version: '1.4.1'
 }
 
 mainClassName = 'uk.gov.hmcts.reform.rhubarb.recipes.Application'
@@ -141,12 +141,12 @@ sourceSets {
   functional {
     java.srcDir 'src/test/functional/java'
     resources.srcDir 'src/test/resources'
-    implementationClasspath += main.output + test.output
+    compileClasspath += main.output + test.output
     runtimeClasspath += main.output + test.output
   }
   apiGateway {
     java {
-      implementationClasspath += main.output + test.output
+      compileClasspath += main.output + test.output
       runtimeClasspath += main.output + test.output
       srcDir 'src/test/gateway/java'
     }
@@ -156,9 +156,9 @@ sourceSets {
 }
 
 configurations {
-  functionalimplementation.extendsFrom testimplementation
+  functionalCompile.extendsFrom testImplementation
   functionalRuntime.extendsFrom testRuntimeOnly
-  apiGatewayimplementation.extendsFrom testimplementation
+  apiGatewayCompile.extendsFrom testImplementation
   apiGatewayRuntime.extendsFrom testRuntimeOnly
 }
 
