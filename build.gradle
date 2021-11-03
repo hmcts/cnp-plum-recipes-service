@@ -113,7 +113,7 @@ dependencies {
   implementation group: 'io.springfox', name: 'springfox-swagger2', version: springfoxSwagger
   implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: springfoxSwagger
 
-  implementationOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+  compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
   testimplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion, {
