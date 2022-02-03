@@ -121,7 +121,7 @@ dependencies {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
   testCompile group: 'io.rest-assured', name: 'rest-assured'
-  testCompile group: 'com.typesafe', name: 'config', version: '1.4.1'
+  testCompile group: 'com.typesafe', name: 'config', version: '1.4.2'
 }
 
 mainClassName = 'uk.gov.hmcts.reform.rhubarb.recipes.Application'
