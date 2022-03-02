@@ -31,11 +31,18 @@ steps:
       - pull-base-image-arm64
     keep: true
 
-  - id: manifest-create
-    cmd: docker manifest create {{.Run.Registry}}/{{CI_IMAGE_TAG}} {{.Run.Registry}}/{{CI_IMAGE_TAG}}-amd64 {{.Run.Registry}}/{{CI_IMAGE_TAG}}-arm64
+  - id: push-images
+    push:
+      - "{{.Run.Registry}}/{{CI_IMAGE_TAG}}-amd64"
+      - "{{.Run.Registry}}/{{CI_IMAGE_TAG}}-arm64"
     when:
       - runtime-amd64
       - runtime-arm64
+
+  - id: manifest-create
+    cmd: docker manifest create {{.Run.Registry}}/{{CI_IMAGE_TAG}} {{.Run.Registry}}/{{CI_IMAGE_TAG}}-amd64 {{.Run.Registry}}/{{CI_IMAGE_TAG}}-arm64
+    when:
+      - push-images
     keep: true
 
   - id: manifest-push
