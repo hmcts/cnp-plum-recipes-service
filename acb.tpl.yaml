@@ -10,7 +10,6 @@ steps:
       -t {{.Run.Registry}}/{{CI_IMAGE_TAG}}-amd64
       --build-arg PLATFORM=/linux/amd64
       --platform Linux/amd64
-      --target runtime
       .
     when:
       - pull-base-image-amd64
@@ -27,7 +26,6 @@ steps:
       -t {{.Run.Registry}}/{{CI_IMAGE_TAG}}-arm64
       --build-arg PLATFORM=/linux/arm64
       --platform Linux/arm64/v8
-      --target runtime
       .
     when:
       - pull-base-image-arm64
