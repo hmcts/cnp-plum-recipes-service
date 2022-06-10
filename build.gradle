@@ -88,7 +88,7 @@ configurations.all {
   resolutionStrategy {
     eachDependency { DependencyResolveDetails details ->
       if (details.requested.group in ['org.apache.tomcat.embed']) {
-        details.useVersion '9.0.58'
+        details.useVersion '9.0.63'
       }
 
       if (details.requested.name in ['jaxb-osgi']) {
