@@ -7,7 +7,7 @@ java:
   disableKeyVaults: true
   environment:
     POSTGRES_SSL_MODE: disable
-    POSTGRES_PASSWORD: "{{ .Values.postgresql.postgresqlPassword}}"
-    POSTGRES_DATABASE: "{{ .Values.postgresql.postgresqlDatabase }}"
-    POSTGRES_USER: "{{ .Values.postgresql.postgresqlUsername }}"
+    POSTGRES_PASSWORD: "{{ .Values.java.postgresql.auth.password}}"
+    POSTGRES_DATABASE: "{{ .Values.java.postgresql.auth.database }}"
+    POSTGRES_USER: "{{ .Values.java.postgresql.auth.username }}"
     POSTGRES_HOST: "{{ .Release.Name }}-postgresql"

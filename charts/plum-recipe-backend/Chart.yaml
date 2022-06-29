@@ -8,5 +8,5 @@ maintainers:
     email: cnpteam@hmcts.net
 dependencies:
   - name: java
-    version: 3.7.7
+    version: 4.0.0-alpha
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
