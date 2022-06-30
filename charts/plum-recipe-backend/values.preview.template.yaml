@@ -4,6 +4,9 @@ java:
   ingressHost: ${SERVICE_FQDN}
   postgresql:
     enabled: true
+    primary:
+      persistence:
+        enabled: true
   disableKeyVaults: true
   environment:
     POSTGRES_SSL_MODE: disable
