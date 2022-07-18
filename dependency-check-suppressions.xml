@@ -78,7 +78,7 @@
   </suppress>
 
   <suppress>
-    <notes><![CDATA[Ignored since a fix is not available]]></notes>
+    <notes><![CDATA[False positive, seems to be looking for any package that has projects in URL.]]></notes>
     <cve>CVE-2022-31569</cve>
   </suppress>
 
