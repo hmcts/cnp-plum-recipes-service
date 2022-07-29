@@ -8,5 +8,20 @@ maintainers:
     email: cnpteam@hmcts.net
 dependencies:
   - name: java
-    version: 4.0.1-alpha
+    version: 4.0.0
+    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+  - name: nodejs
+    version: 0.1.0
+    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+  - name: job
+    version: 0.1.0
+    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+  - name: blobstorage
+    version: 0.1.0
+    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+  - name: servicebus
+    version: 0.1.0
+    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+  - name: ccd
+    version: 0.1.0
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
