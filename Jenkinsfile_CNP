@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@warnccdchart") _
+@Library("Infrastructure@warnccdcharts") _
 
 def type = "java"
 def product = "plum"
