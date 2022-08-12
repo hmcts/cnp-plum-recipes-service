@@ -23,6 +23,8 @@ pmd {
 
 java {
   toolchain {
+    # See https://github.com/gradle/gradle/issues/20520
+    vendor = JvmVendorSpec.ADOPTOPENJDK
     languageVersion = JavaLanguageVersion.of(17)
   }
 }
