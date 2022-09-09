@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.rhubarb.recipes.endpoint;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +24,6 @@ import java.util.concurrent.TimeUnit;
 public class RecipeController {
 
     private final RecipeStore recipeStore; // NOPMD no need for accessors here
-
-    @Value( "${test.sleep}" )
-    private long testSleep;
 
     public RecipeController(RecipeStore recipeStore) {
         this.recipeStore = recipeStore;
@@ -60,15 +56,15 @@ public class RecipeController {
         return new RecipeList(recipes);
     }
 
-    @GetMapping(path = "/test")
+    @GetMapping(path = "/test/{sleepTime}")
     @Operation(summary = "Test end point")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Success"),
         @ApiResponse(responseCode = "404", description = "Not found"),
     })
-    public String test() throws InterruptedException {
+    public String test(@PathVariable long sleepTime) throws InterruptedException {
 
-        TimeUnit.SECONDS.sleep(testSleep);
+        TimeUnit.SECONDS.sleep(sleepTime);
         return "it works";
     }
 
