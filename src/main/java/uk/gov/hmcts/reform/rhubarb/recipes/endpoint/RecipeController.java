@@ -64,7 +64,7 @@ public class RecipeController {
     })
     public String test(@PathVariable long sleepTime) throws InterruptedException {
 
-        TimeUnit.SECONDS.sleep(sleepTime);
+        TimeUnit.SECONDS.sleep(sleepTime); // NOPMD
         return "it works";
     }
 
