@@ -1,8 +1,10 @@
 {
-  "enabledManagers": ["helm-requirements","gradle-wrapper"],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", ":dependencyDashboard"],
   "labels": ["dependencies"],
   "helm-requirements":
     {
+      "enabled": true,
       "fileMatch": ["\\Chart.yaml|requirements.yaml$"],
       "aliases": {
         "hmctspublic": "https://hmctspublic.azurecr.io/helm/v1/repo/"
