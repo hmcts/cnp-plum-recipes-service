@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@fixdockerbuildissue") _
+@Library("Infrastructure@debughelm") _
 
 def type = "java"
 def product = "plum"
