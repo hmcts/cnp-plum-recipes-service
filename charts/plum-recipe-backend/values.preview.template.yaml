@@ -1,6 +1,6 @@
 java:
   # Don't modify below here
-  image: ${IMAGE_NAME}
+  image: hmctspublic.azurecr.io/plum/recipe-backend:pr-none
   ingressHost: ${SERVICE_FQDN}
   postgresql:
     enabled: true
