@@ -1,6 +1,7 @@
 java:
   # Don't modify below here
   image: hmctspublic.azurecr.io/plum/recipe-backend:latest
+  aadIdentityName: cnpaaa
   ingressHost: ${SERVICE_FQDN}
   postgresql:
     enabled: true
