@@ -4,16 +4,6 @@ java:
   ingressHost: ${SERVICE_FQDN}
   postgresql:
     enabled: true
+  disableKeyVaults: true
   environment:
     POSTGRES_SSL_MODE: disable
-  keyVaults:
-    "plumsi":
-      secrets:
-        - name: recipe-backend-POSTGRES-DATABASE-v12
-          alias: POSTGRES_DATABASE
-        - name: recipe-backend-POSTGRES-HOST-v12
-          alias: POSTGRES_HOST
-        - name: recipe-backend-POSTGRES-USER-v12
-          alias: POSTGRES_USER
-        - name: recipe-backend-POSTGRES-PASS-v12
-          alias: POSTGRES_PASSWORD
