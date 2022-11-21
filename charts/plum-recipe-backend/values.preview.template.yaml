@@ -2,6 +2,7 @@ java:
   # Don't modify below here
   image: hmctspublic.azurecr.io/plum/recipe-backend:latest
   ingressHost: ${SERVICE_FQDN}
+  readinessPath: '/health/readinessfail'
   postgresql:
     enabled: true
   disableKeyVaults: true
