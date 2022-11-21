@@ -1,6 +1,6 @@
 java:
   # Don't modify below here
-  image: hmctspublic.azurecr.io/plum/recipe-backend:latest
+  image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
   readinessPath: '/health/readinessfail'
   postgresql:
@@ -8,3 +8,7 @@ java:
   disableKeyVaults: true
   environment:
     POSTGRES_SSL_MODE: disable
+    POSTGRES_PASSWORD: "{{ .Values.postgresql.auth.password}}"
+    POSTGRES_DATABASE: "{{ .Values.postgresql.auth.database }}"
+    POSTGRES_USER: "{{ .Values.postgresql.auth.username }}"
+    POSTGRES_HOST: "{{ .Release.Name }}-postgresql"
