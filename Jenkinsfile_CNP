@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@kubectleventsonfailure") _
+@Library("Infrastructure@iteration2") _
 
 def type = "java"
 def product = "plum"
