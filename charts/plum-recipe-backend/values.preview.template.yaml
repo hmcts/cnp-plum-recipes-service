@@ -3,11 +3,11 @@ java:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
   postgresql:
-    enabled: true
+    enabled: false
   disableKeyVaults: true
   secrets:
     POSTGRES_PASSWORD:
-      secretRef: "{{ .Release.Name }}-postgresql"
+      secretRef: "{{ .Release.Name }}-aso-postgresql"
       key: PASSWORD
   environment:
     #POSTGRES_SSL_MODE: disable
