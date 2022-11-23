@@ -7,7 +7,7 @@ java:
   disableKeyVaults: true
   secrets:
     POSTGRES_PASSWORD:
-      secretRef: {{ .Release.Name }}-postgresql
+      secretRef: "{{ .Release.Name }}-postgresql"
       key: PASSWORD
   environment:
     #POSTGRES_SSL_MODE: disable
