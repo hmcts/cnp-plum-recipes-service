@@ -5,9 +5,12 @@ java:
   postgresql:
     enabled: true
   disableKeyVaults: true
+  secrets:
+    POSTGRES_PASSWORD:
+      secretRef: {{ .Release.Name }}-postgresql
+      key: PASSWORD
   environment:
-    POSTGRES_SSL_MODE: disable
-    POSTGRES_PASSWORD: "{{ .Values.postgresql.auth.password}}"
-    POSTGRES_DATABASE: "{{ .Values.postgresql.auth.database }}"
-    POSTGRES_USER: "{{ .Values.postgresql.auth.username }}"
-    POSTGRES_HOST: "{{ .Release.Name }}-postgresql"
+    #POSTGRES_SSL_MODE: disable
+    POSTGRES_DATABASE: "{{ .Release.Name }}"
+    POSTGRES_USER: "hmcts"
+    POSTGRES_HOST: "{{ .Release.Name }}.postgres.database.azure.com"
