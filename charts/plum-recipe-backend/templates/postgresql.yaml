@@ -1,3 +1,5 @@
+{{- $password := randAlphaNum 20 | lower | nospace -}}
+---
 apiVersion: dbforpostgresql.azure.com/v1alpha1api20210601
 kind: FlexibleServer
 metadata:
@@ -50,7 +52,7 @@ metadata:
   namespace: cnp
 stringData:
   USERNAME: "hmcts"
-  PASSWORD: "M8eF4Qcg&EfF"
+  PASSWORD: {{ $password }}
   DATABASE: {{ .Release.Name }}
   SERVER:   {{ .Release.Name }}.postgres.database.azure.com
   PORT:     "5432"
