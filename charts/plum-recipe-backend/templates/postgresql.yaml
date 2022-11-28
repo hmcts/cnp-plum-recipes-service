@@ -7,17 +7,17 @@ metadata:
   namespace: cnp
 spec:
   owner:
-    name: test-server-pr-1
+    name: cnp-server-preview
   charset: utf8
----
+#---
 #apiVersion: dbforpostgresql.azure.com/v1alpha1api20210601
 #kind: FlexibleServer
 #metadata:
-#  name: {{ .Release.Name }}
+#  name: cnp-server-preview
 #  namespace: cnp
 #spec:
 #  owner:
-#    name: cft-aso-test-postgresql # created ahead
+#    name: cft-aso-test-postgresql  #created ahead and added to flux
 #  location: uksouth
 #  version: "11"
 #  sku:
@@ -25,34 +25,23 @@ spec:
 #    tier: Burstable
 #  administratorLogin: hmcts
 #  administratorLoginPassword:
-#    name: {{ .Release.Name }}-aso-postgresql
+#    name: cnp-server-preview-aso-postgresql
 #    key: PASSWORD
 #  storage:
 #    storageSizeGB: 32
-#---
-#apiVersion: dbforpostgresql.azure.com/v1alpha1api20210601
-#kind: FlexibleServersFirewallRule
-#metadata:
-#  name: {{ .Release.Name }}
-#  namespace: cnp
-#spec:
-#  owner:
-#    name: {{ .Release.Name }}
-#  # The following address range allows anybody to connect to this server.
-#  # This should only be used for demo purposes and not in production!
-#  # There are other ways to control server access which are not covered here, you can see more about it here:
-#  # https://docs.microsoft.com/azure/postgresql/flexible-server/concepts-security#network-security
-#  startIpAddress: 0.0.0.0
-#  endIpAddress: 255.255.255.255
+#  network:
+#    delegatedSubnetResourceReference:
+#      armId: /subscriptions/8b6ea922-0862-443e-af15-6056e1c9b9a4/resourceGroups/cft-preview-network-rg/providers/Microsoft.Network/virtualNetworks/cft-preview-vnet/subnets/flexiblepostgresql
+#    privateDnsZoneArmResourceReference:
+#      armId: /subscriptions/1baf5470-1c3e-40d3-a6f7-74bfbce4b348/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.postgres.database.azure.com
 #---
 #apiVersion: v1
 #kind: Secret
 #metadata:
-#  name: {{ .Release.Name }}-aso-postgresql
+#  name: cnp-server-preview-aso-postgresql
 #  namespace: cnp
 #stringData:
 #  USERNAME: "hmcts"
-#  PASSWORD: {{ $password }}
-#  DATABASE: {{ .Release.Name }}
-#  SERVER:   {{ .Release.Name }}.postgres.database.azure.com
+#  PASSWORD: M8eF4Qcg&EfF
+#  SERVER:   cnp-server-preview.postgres.database.azure.com
 #  PORT:     "5432"

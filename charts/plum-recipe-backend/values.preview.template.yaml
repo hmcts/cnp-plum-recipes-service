@@ -7,10 +7,10 @@ java:
   disableKeyVaults: true
   secrets:
     POSTGRES_PASSWORD:
-      secretRef: test-server-pr-1
+      secretRef: cnp-server-preview-aso-postgresql
       key: PASSWORD
   environment:
     POSTGRES_SSL_MODE: require
     POSTGRES_DATABASE: "{{ .Release.Name }}"
     POSTGRES_USER: "hmcts"
-    POSTGRES_HOST: "test-server-pr-1.postgres.database.azure.com"
+    POSTGRES_HOST: "cnp-server-preview.postgres.database.azure.com"
