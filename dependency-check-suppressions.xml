@@ -85,14 +85,14 @@
   </suppress>
 
 <!-- related to SnakeYaml supress below however not fixed by spring boot upgrade currently -->
-  <supress until="until="2023-01-07"">
+  <suppress until="until="2023-01-07"">
       <notes><![CDATA[
       https://github.com/spring-projects/spring-boot/issues/33457 - shows class is generally only used by internal
       yaml files and not used for data recieved externally
       ]]>]</notes>
       <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
       <cve>CVE-2022-1471</cve>
-  </supress>
+  </suppress>
 
   <!-- remove when spring boot 2.7.4 or greater is upgraded to -->
   <suppress>
