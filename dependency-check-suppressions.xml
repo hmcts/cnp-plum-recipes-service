@@ -85,7 +85,7 @@
   </suppress>
 
 <!-- related to SnakeYaml supress below however not fixed by spring boot upgrade currently -->
-  <suppress until="until="2023-01-07"">
+  <suppress until="2023-01-07">
       <notes><![CDATA[
       https://github.com/spring-projects/spring-boot/issues/33457 - shows class is generally only used by internal
       yaml files and not used for data recieved externally
