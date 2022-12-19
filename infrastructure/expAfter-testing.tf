@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "expAfter_testing_rg" {
 
 resource "azurerm_key_vault" "expAfter_testing_kv" {
   name                = "expAfter-testing-${var.env}"
-  location            = azurerm_resource_group.expAfter_testing.location
+  location            = azurerm_resource_group.expAfter_testing_rg.location
   resource_group_name = azurerm_key_vault.expAfter_testing_rg.name
   enabled_for_disk_encryption = true
   tenant_id                   = data.azurerm_client_config.current.tenant_id
