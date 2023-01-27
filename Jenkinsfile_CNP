@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@testowaspformat") _
+@Library("Infrastructure@testhostedsuppressions") _
 
 def type = "java"
 def product = "plum"
