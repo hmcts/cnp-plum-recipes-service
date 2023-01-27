@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@testhostedsuppressions") _
+@Library("Infrastructure") _
 
 def type = "java"
 def product = "plum"
@@ -22,7 +22,6 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
     envVariable: envVar
   ]
 }
-
 
 withPipeline(type, product, component) {
   enablePerformanceTest()
