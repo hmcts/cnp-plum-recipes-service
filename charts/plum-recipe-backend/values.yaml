@@ -10,7 +10,7 @@ java:
     enabled: true
     enabledForDevMode: true
     maxReplicas: 5
-    memory:
+    cpu:
       enabled: false
   keyVaults:
     "plumsi":
