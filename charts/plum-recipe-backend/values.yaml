@@ -9,6 +9,7 @@ java:
   autoscaling:
     enabled: true
     enabledForDevMode: true
+    maxReplicas: 5
     memory:
       enabled: false
   keyVaults:
