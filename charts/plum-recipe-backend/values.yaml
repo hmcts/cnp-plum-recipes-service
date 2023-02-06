@@ -7,7 +7,7 @@ java:
   environment:
     POSTGRES_SSL_MODE: require
   autoscaling:
-    enabled: true
+    enabled: false
     enabledForDevMode: true
     maxReplicas: 5
     cpu:
