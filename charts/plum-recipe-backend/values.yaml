@@ -8,6 +8,9 @@ java:
     POSTGRES_SSL_MODE: require
   autoscaling:
     enabled: true
+    enabledForDevMode: true
+    memory:
+      enabled: false
   keyVaults:
     "plumsi":
       secrets:
