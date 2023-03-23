@@ -9,12 +9,9 @@
       "matchStrings": [
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\sARG .*?_VERSION=(?<currentValue>.*)\\s"
       ]
-    },
-    {      
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "automergeType": "pr"
     }
-  ],
+   ],
+  "automerge": true,
+  "automergeType": "pr",
   "platformAutomerge": true
 }
