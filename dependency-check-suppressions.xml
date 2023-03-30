@@ -17,5 +17,10 @@
     <cve>CVE-2022-45688</cve>
   </suppress>
 
+  <suppress until="2023-05-30">
+    <notes>No fix yet</notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-expression@.*$</packageUrl>
+    <vulnerabilityName>CVE-2023-20861</vulnerabilityName>
+  </suppress>
 
 </suppressions>
