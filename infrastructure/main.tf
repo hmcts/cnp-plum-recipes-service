@@ -94,6 +94,7 @@ module "postgresql_flexible" {
   location      = var.location
 
   common_tags = var.common_tags
+  admin_user_object_id = var.jenkins_AAD_objectId
   pgsql_databases = [
     {
       name : "plum"
