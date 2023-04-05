@@ -81,9 +81,9 @@ module "recipe-database-v11" {
 }
 
 module "postgresql_flexible" {
-  providers = {
-    azurerm.postgres_network = azurerm.postgres_network
-  }
+  # providers = {
+  #   azurerm.postgres_network = azurerm.postgres_network
+  # }
 
   source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
   env           = var.env
