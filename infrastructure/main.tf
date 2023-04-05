@@ -80,6 +80,29 @@ module "recipe-database-v11" {
   subscription       = var.subscription
 }
 
+module "postgresql_flexible" {
+  providers = {
+    azurerm.postgres_network = azurerm.postgres_network
+  }
+
+  source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
+  env           = var.env
+  product       = var.product
+  name          = "${var.product}-v11-flexible"
+  component     = var.component
+  business_area = "CFT"
+  location      = var.location
+
+  common_tags = var.common_tags
+  pgsql_databases = [
+    {
+      name : "plum"
+    }
+  ]
+
+  pgsql_version = "14"
+}
+
 # region API (gateway)
 
 module "plum_product" {
