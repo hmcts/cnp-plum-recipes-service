@@ -82,7 +82,7 @@ module "recipe-database-v11" {
 
 module "postgresql_flexible" {
 
-  source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
+  source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=postgres-vnet-provider"
   env           = var.env
   product       = var.product
   name          = "${var.product}-v11-flexible"
