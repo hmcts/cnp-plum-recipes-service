@@ -5,7 +5,9 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "~> 3.0"
-      configuration_aliases = [azurerm.postgres_network]
+      skip_provider_registration = true
+      alias                      = "postgres_network"
+      subscription_id            = var.aks_subscription_id
     }
     random = {
       source = "hashicorp/random"
