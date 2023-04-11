@@ -95,7 +95,7 @@ module "postgresql_flexible" {
   source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=postgres-vnet-provider"
   env           = var.env
   product       = var.product
-  name          = "${var.product}-v11-flexible"
+  name          = "${var.product}-v14-flexible"
   component     = var.component
   business_area = "CFT"
   location      = var.location
