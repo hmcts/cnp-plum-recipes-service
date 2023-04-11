@@ -71,13 +71,13 @@ resource "azurerm_key_vault_secret" "POSTGRES_DATABASE-V11" {
 
 resource "azurerm_key_vault_secret" "POSTGRES-USER-V14" {
   name         = "recipe-backend-POSTGRES-USER-v14"
-  value        = module.postgresql_flexible.administrator_login
+  value        = module.postgresql_flexible.username
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-PASS-V14" {
   name         = "recipe-backend-POSTGRES-PASS-v14"
-  value        = module.postgresql_flexible.administrator_password
+  value        = module.postgresql_flexible.password
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
