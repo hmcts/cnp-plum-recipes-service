@@ -2,6 +2,13 @@ provider "azurerm" {
   features {}
 }
 
+provider "azurerm" {
+  features {}
+  skip_provider_registration = true
+  alias                      = "postgres_network"
+  subscription_id            = var.aks_subscription_id
+}
+
 locals {
   app        = "recipe-backend"
   create_api = var.env != "preview" && var.env != "spreview"
@@ -62,6 +69,18 @@ resource "azurerm_key_vault_secret" "POSTGRES_DATABASE-V11" {
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
+resource "azurerm_key_vault_secret" "POSTGRES-USER-V14" {
+  name         = "recipe-backend-POSTGRES-USER-v14"
+  value        = module.postgresql_flexible.username
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+}
+
+resource "azurerm_key_vault_secret" "POSTGRES-PASS-V14" {
+  name         = "recipe-backend-POSTGRES-PASS-v14"
+  value        = module.postgresql_flexible.password
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+}
+
 module "recipe-database-v11" {
   source             = "git@github.com:hmcts/cnp-module-postgres?ref=postgresql_tf"
   product            = var.product
@@ -78,6 +97,30 @@ module "recipe-database-v11" {
   storage_mb         = "51200"
   common_tags        = var.common_tags
   subscription       = var.subscription
+}
+
+module "postgresql_flexible" {
+    providers = {
+    azurerm.postgres_network = azurerm.postgres_network
+  }
+
+  source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=postgres-vnet-provider"
+  env           = var.env
+  product       = var.product
+  name          = "${var.product}-v14-flexible"
+  component     = var.component
+  business_area = "CFT"
+  location      = var.location
+
+  common_tags = var.common_tags
+  admin_user_object_id = var.jenkins_AAD_objectId
+  pgsql_databases = [
+    {
+      name : "plum"
+    }
+  ]
+
+  pgsql_version = "14"
 }
 
 # region API (gateway)
