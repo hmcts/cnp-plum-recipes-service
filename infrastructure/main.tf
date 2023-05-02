@@ -86,7 +86,9 @@ module "postgresql_flexible" {
   admin_user_object_id = var.jenkins_AAD_objectId
   pgsql_databases = [
     {
-      name : "plum",
+      name : "plum"
+    },
+    {
       name : "rhubarb"
     }
   ]
