@@ -42,8 +42,7 @@
    file name: spring-web-5.3.27.jar
    ]]></notes>
         <packageUrl regex="true">^pkg:maven/org\.springframework\.spring-web@.*$</packageUrl>
-        <cve>CVE-2016-1000027
-</cve>
+        <cve>CVE-2016-1000027</cve>
   </suppress>
 
 
