@@ -2,6 +2,7 @@
 
 @Library("Infrastructure@purgetagsonpromote")
 
+
 def type = "java"
 def product = "plum"
 def component = "recipe-backend"
