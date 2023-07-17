@@ -1,7 +1,7 @@
 java:
   # Don't modify below here
   image: ${IMAGE_NAME}
-  ingressHost: ${SERVICE_FQDN}
+  ingressHost: test-plum.service.core-compute-preview.internal
   postgresql:
     enabled: true
   disableKeyVaults: true
