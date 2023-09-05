@@ -83,6 +83,16 @@ dependencyUpdates.resolutionStrategy = {
   }
 }
 
+configurations.all {
+  resolutionStrategy {
+    eachDependency { DependencyResolveDetails details ->
+      if (details.requested.group in ['org.apache.tomcat.embed']) {
+        details.useVersion '10.1.13'
+      }
+    }
+  }
+}
+
 dependencies {
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
