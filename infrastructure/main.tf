@@ -81,6 +81,7 @@ module "postgresql_flexible" {
   component     = var.component
   business_area = "CFT"
   location      = var.location
+  subnet_suffix = "expanded"
 
   common_tags = var.common_tags
   admin_user_object_id = var.jenkins_AAD_objectId
@@ -93,7 +94,7 @@ module "postgresql_flexible" {
     }
   ]
 
-  pgsql_version = "14"
+  pgsql_version = "15"
 }
 
 # region API (gateway)
