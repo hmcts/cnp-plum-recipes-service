@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure") 
+@Library("Infrastructure@DTSPO-16011-Switch-to-new-DB") 
 
 def type = "java"
 def product = "plum"
