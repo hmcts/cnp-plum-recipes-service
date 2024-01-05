@@ -29,7 +29,7 @@ spring:
 management:
   endpoint:
     health:
-      show-details: "always"
+      show-details: "alway"
       group:
        readiness:
         include: "db"
