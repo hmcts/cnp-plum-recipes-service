@@ -69,9 +69,9 @@ resource "azurerm_key_vault_secret" "POSTGRES_DATABASE-V14" {
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
-resource "azurerm_key_vault_secret" "test_secret" {
-  name         = "test_secret"
-  value        = "test_secret_value"
+resource "azurerm_key_vault_secret" "test-secret" {
+  name         = "test-secret"
+  value        = "test-secret-value"
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
