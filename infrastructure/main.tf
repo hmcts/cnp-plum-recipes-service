@@ -134,7 +134,7 @@ module "policy" {
 # REDIS CACHE TESTING
 
 module "plum-redis-storage" {
-  source                        = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency"
+  source                        = "git@github.com:hmcts/cnp-module-redis?ref=master"
   product                       = "${var.product}-${var.component}-session-storage"
   location                      = var.location
   env                           = var.env
