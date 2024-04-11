@@ -133,8 +133,12 @@ module "policy" {
 
 # REDIS CACHE TESTING
 
+variable "rdb_backup_enabled" {
+type = bool
+default = true
+}
 module "plum-redis-storage" {
-  source                        = "git@github.com:hmcts/cnp-module-redis?ref=master"
+  source                        = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency"
   product                       = "${var.product}-${var.component}-session-storage"
   location                      = var.location
   env                           = var.env
@@ -146,4 +150,5 @@ module "plum-redis-storage" {
   sku_name                      = var.sku_name
   family                        = var.family
   capacity                      = var.redis_capacity
+  rdb_backup_enabled            = var.rdb_backup_enabled
 }
