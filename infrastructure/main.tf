@@ -137,6 +137,22 @@ variable "rdb_backup_enabled" {
 type = bool
 default = true
 }
+
+variable "sku_name" {
+  default     = "Premium"
+  description = "The SKU of Redis to use. Possible values are `Basic`, `Standard` and `Premium`."
+}
+
+variable "family" {
+  default     = "P"
+  description = "The SKU family/pricing group to use. Valid values are `C` (for Basic/Standard SKU family) and `P` (for Premium). Use P for higher availability, but beware it costs a lot more."
+}
+
+variable "redis_capacity" {
+  default     = "1"
+  description = "The size of the Redis cache to deploy. Valid values are 1, 2, 3, 4, 5"
+}
+
 module "plum-redis-storage" {
   source                        = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency"
   product                       = "${var.product}-${var.component}-session-storage"
