@@ -133,7 +133,7 @@ module "policy" {
 
 # REDIS CACHE TESTING
 
-module "adoption-web-session-storage" {
+module "plum-redis-storage" {
   source                        = "git@github.com:hmcts/cnp-module-redis?ref=master"
   product                       = "${var.product}-${var.component}-session-storage"
   location                      = var.location
