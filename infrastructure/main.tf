@@ -70,7 +70,7 @@ resource "azurerm_key_vault_secret" "POSTGRES_DATABASE-V14" {
 }
 
 module "postgresql_flexible" {
-    providers = {
+  providers = {
     azurerm.postgres_network = azurerm.postgres_network
   }
 
@@ -83,7 +83,7 @@ module "postgresql_flexible" {
   location      = var.location
   subnet_suffix = "expanded"
 
-  common_tags = var.common_tags
+  common_tags          = var.common_tags
   admin_user_object_id = var.jenkins_AAD_objectId
   pgsql_databases = [
     {
@@ -134,8 +134,8 @@ module "policy" {
 # REDIS CACHE TESTING
 
 variable "rdb_backup_enabled" {
-type = bool
-default = true
+  type    = bool
+  default = true
 }
 
 variable "sku_name" {
@@ -153,6 +153,11 @@ variable "redis_capacity" {
   description = "The size of the Redis cache to deploy. Valid values are 1, 2, 3, 4, 5"
 }
 
+variable "redis_backup_frequency" {
+  default     = "360"
+  description = "The Backup Frequency in Minutes. Only supported on Premium SKUs. Possible values are: 15, 30, 60, 360, 720 and 1440"
+}
+
 module "plum-redis-storage" {
   source                        = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency"
   product                       = "${var.product}-${var.component}-session-storage"
@@ -167,4 +172,5 @@ module "plum-redis-storage" {
   family                        = var.family
   capacity                      = var.redis_capacity
   rdb_backup_enabled            = var.rdb_backup_enabled
+  rdb_backup_frequency          = var.redis_backup_frequency
 }
