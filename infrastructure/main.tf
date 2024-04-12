@@ -133,10 +133,10 @@ module "policy" {
 
 # REDIS CACHE TESTING
 
-variable "rdb_backup_enabled" {
-  type    = bool
-  default = true
-}
+# variable "rdb_backup_enabled" {
+#   type    = bool
+#   default = true
+# }
 
 variable "sku_name" {
   default     = "Premium"
@@ -153,10 +153,10 @@ variable "redis_capacity" {
   description = "The size of the Redis cache to deploy. Valid values are 1, 2, 3, 4, 5"
 }
 
-variable "redis_backup_frequency" {
-  default     = "360"
-  description = "The Backup Frequency in Minutes. Only supported on Premium SKUs. Possible values are: 15, 30, 60, 360, 720 and 1440"
-}
+# variable "redis_backup_frequency" {
+#   default     = "360"
+#   description = "The Backup Frequency in Minutes. Only supported on Premium SKUs. Possible values are: 15, 30, 60, 360, 720 and 1440"
+# }
 
 module "plum-redis-storage" {
   source                          = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency"
@@ -171,7 +171,7 @@ module "plum-redis-storage" {
   sku_name                        = var.sku_name
   family                          = var.family
   capacity                        = var.redis_capacity
-  rdb_backup_enabled              = var.rdb_backup_enabled
-  rdb_backup_frequency            = var.redis_backup_frequency
-  rdb_storage_account_name_prefix = var.product
+  # rdb_backup_enabled              = var.rdb_backup_enabled
+  # rdb_backup_frequency            = var.redis_backup_frequency
+  # rdb_storage_account_name_prefix = var.product
 }
