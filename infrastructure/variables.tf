@@ -1,5 +1,5 @@
 variable "product" {
-  default = "plum_cl"
+  default = "plum_cl01"
 }
 
 variable "component" {}
