@@ -76,7 +76,7 @@ resource "azurerm_key_vault_secret" "test-secret" {
 }
 
 module "postgresql_flexible" {
-    providers = {
+  providers = {
     azurerm.postgres_network = azurerm.postgres_network
   }
 
@@ -89,7 +89,7 @@ module "postgresql_flexible" {
   location      = var.location
   subnet_suffix = "expanded"
 
-  common_tags = var.common_tags
+  common_tags          = var.common_tags
   admin_user_object_id = var.jenkins_AAD_objectId
   pgsql_databases = [
     {
@@ -100,7 +100,7 @@ module "postgresql_flexible" {
     }
   ]
 
-  pgsql_version = "15"
+  pgsql_version = "16"
 }
 
 # region API (gateway)
@@ -137,3 +137,47 @@ module "policy" {
 }
 # endregion
 
+# REDIS CACHE TESTING
+
+variable "rdb_backup_enabled" {
+  type    = bool
+  default = false
+}
+
+variable "sku_name" {
+  default     = "Basic"
+  description = "The SKU of Redis to use. Possible values are `Basic`, `Standard` and `Premium`."
+}
+
+variable "family" {
+  default     = "C"
+  description = "The SKU family/pricing group to use. Valid values are `C` (for Basic/Standard SKU family) and `P` (for Premium). Use P for higher availability, but beware it costs a lot more."
+}
+
+variable "redis_capacity" {
+  default     = "1"
+  description = "The size of the Redis cache to deploy. Valid values are 1, 2, 3, 4, 5"
+}
+
+variable "redis_backup_frequency" {
+  default     = "360"
+  description = "The Backup Frequency in Minutes. Only supported on Premium SKUs. Possible values are: 15, 30, 60, 360, 720 and 1440"
+}
+
+module "plum-redis-storage" {
+  source                          = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency"
+  product                         = "${var.product}-${var.component}-session-storage"
+  location                        = var.location
+  env                             = var.env
+  private_endpoint_enabled        = true
+  redis_version                   = "6"
+  business_area                   = "cft"
+  public_network_access_enabled   = false
+  common_tags                     = var.common_tags
+  sku_name                        = var.sku_name
+  family                          = var.family
+  capacity                        = var.redis_capacity
+  rdb_backup_enabled              = var.rdb_backup_enabled
+  rdb_backup_frequency            = var.redis_backup_frequency
+  rdb_storage_account_name_prefix = var.product
+}
