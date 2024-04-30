@@ -158,6 +158,11 @@ variable "redis_backup_frequency" {
   description = "The Backup Frequency in Minutes. Only supported on Premium SKUs. Possible values are: 15, 30, 60, 360, 720 and 1440"
 }
 
+variable "rdb_backup_max_snapshot_count" {
+  type    = string
+  default = "1"
+}
+
 module "plum-redis-storage" {
   source                          = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency"
   product                         = "${var.product}-${var.component}-session-storage"
