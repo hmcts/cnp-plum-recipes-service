@@ -178,5 +178,6 @@ module "plum-redis-storage" {
   capacity                        = var.redis_capacity
   rdb_backup_enabled              = var.rdb_backup_enabled
   rdb_backup_frequency            = var.redis_backup_frequency
+  rdb_backup_max_snapshot_count   = var.rdb_backup_max_snapshot_count
   rdb_storage_account_name_prefix = var.product
 }
