@@ -47,7 +47,7 @@ withPipeline(type, product, app) {
   enablePerformanceTest()
   enableAksStagingDeployment()
   disableLegacyDeployment()
-  expires(expiresAfter)
+  #expires(expiresAfter)
   onNonPR() {
     loadVaultSecrets(apiTestSecrets)
   }
