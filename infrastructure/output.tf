@@ -6,3 +6,6 @@ output "api_gateway_url" {
 output "vaultName" {
   value = local.vault_name
 }
+output "new" {
+  value = "new"
+}
