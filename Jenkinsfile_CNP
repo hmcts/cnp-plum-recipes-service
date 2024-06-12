@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@DTSPO-17348-Update-to-central-nagger") 
+@Library("Infrastructure@DTSPO-17348-Test-blocks") 
 
 def type = "java"
 def product = "plum"
