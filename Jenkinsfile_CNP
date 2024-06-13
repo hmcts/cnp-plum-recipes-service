@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@DTSPO-17348-Test-blocks") 
+@Library("Infrastructure@test-failure") 
 
 def type = "java"
 def product = "plum"
