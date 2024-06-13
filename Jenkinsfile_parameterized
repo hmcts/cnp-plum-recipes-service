@@ -1,5 +1,5 @@
 #!groovy
-@Library(value="Infrastructure@DTSPO-17348-Update-to-central-nagger", changelog=false)
+@Library(value="Infrastructure@test-failure", changelog=false)
 
 List<LinkedHashMap<String, Object>> apiTestSecrets = [
   secret('test-client-key-store', 'TEST_CLIENT_KEY_STORE'),
