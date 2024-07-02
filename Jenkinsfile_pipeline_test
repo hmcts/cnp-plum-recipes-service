@@ -22,6 +22,7 @@ library "Infrastructure@${params.LIB_VERSION}"
 def type = "java"
 def product = "crumble"
 def app = "recipe-backend"
+def expiresAfter = "3000-01-01"
 
 def apiTestSecrets = [ 'crumblesi-${env}' :
   [
