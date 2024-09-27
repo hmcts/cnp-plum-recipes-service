@@ -95,6 +95,7 @@ module "postgresql_flexible" {
   ]
 
   pgsql_version = "16"
+  pgsql_sku     = var.pgsql_sku
 }
 
 # region API (gateway)
