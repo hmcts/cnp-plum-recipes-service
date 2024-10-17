@@ -82,7 +82,7 @@ module "postgresql_flexible" {
   business_area = "CFT"
   location      = var.location
   subnet_suffix = "expanded"
-  enable_qpi    = var.env == "sbox" ? true : false
+  enable_qpi    = var.env == "sandbox" ? true : false
 
   common_tags          = var.common_tags
   admin_user_object_id = var.jenkins_AAD_objectId
