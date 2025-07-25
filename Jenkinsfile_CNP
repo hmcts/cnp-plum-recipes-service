@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@dtspo-26872") 
+@Library("Infrastructure") 
 
 def type = "java"
 def product = "plum"
@@ -27,7 +27,6 @@ def expiresAfter = "3000-01-01"
 
 withPipeline(type, product, component) {
   enablePerformanceTest()
-  enableSecurityScan()
   enableAksStagingDeployment()
   disableLegacyDeployment()
   enableApiGatewayTest()
