@@ -66,3 +66,9 @@ import {
   to = module.postgresql_flexible.azurerm_postgresql_flexible_server_active_directory_administrator.pgsql_adadmin
   id = "/subscriptions/bf308a5c-0624-4334-8ff8-8dca9fd43783/resourceGroups/plum-v14-flexible-data-sandbox/providers/Microsoft.DBforPostgreSQL/flexibleServers/plum-v14-flexible-sandbox/administrators/3c52c98b-07a3-4a97-92b9-298e86bb1ca9"
 }
+
+# PostgreSQL Principal AD Administrator
+import {
+  to = module.postgresql_flexible.azurerm_postgresql_flexible_server_active_directory_administrator.pgsql_principal_admin[0]
+  id = "/subscriptions/bf308a5c-0624-4334-8ff8-8dca9fd43783/resourceGroups/plum-v14-flexible-data-sandbox/providers/Microsoft.DBforPostgreSQL/flexibleServers/plum-v14-flexible-sandbox/administrators/0292f26e-288e-4f5b-85fc-b99a53f0a2b1"
+}
