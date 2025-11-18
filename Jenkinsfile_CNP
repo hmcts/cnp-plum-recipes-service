@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure")
+@Library("Infrastructure@performance-stages-tidy")
 
 def type = "java"
 def product = "plum"
@@ -26,7 +26,6 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 def expiresAfter = "3000-01-01"
 
 withPipeline(type, product, component) {
-  enablePerformanceTest()
   enableAksStagingDeployment()
   disableLegacyDeployment()
   enableApiGatewayTest()
@@ -34,4 +33,15 @@ withPipeline(type, product, component) {
     loadVaultSecrets(apiTestSecrets)
   }
   expires(expiresAfter)
+
+  /*=====================================================
+  Dynatrace and Performance Configuration
+  =======================================================*/
+  enablePerformanceTestStages(timeout: 60)
+  // enableGatlingLoadTests([
+  //   repo: 'https://github.com/hmcts/performance-testing.git',
+  //   branch: 'add-et-tests',
+  //   simulation: 'et.simulations.EtCitizenSimulation',
+  //   timeout: 10
+  // ])
 }

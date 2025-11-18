@@ -1,6 +1,6 @@
 	// ====== Service specific config ======
-	this.dynatraceMetricType = 'testPlumService'
-	this.dynatraceMetricTag = 'namespace:et'
+	this.dynatraceMetricType = 'recipe-backend-plumTest'
+	this.dynatraceMetricTag = 'namespace:recipe-backend-plumTest'
 
 	//Preview Config
 	this.dynatraceSyntheticTestPreview = "SYNTHETIC_TEST-58D99F542AAB721C"
