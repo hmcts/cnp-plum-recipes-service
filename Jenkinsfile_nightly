@@ -11,7 +11,7 @@ properties([
         ])
 ])
 
-@Library("Infrastructure@DTSPO-15437/gradle-frontend")
+@Library("Infrastructure@DTSPO-29095/update-zap-image")
 
 def type = "java"
 def product = "plum"
