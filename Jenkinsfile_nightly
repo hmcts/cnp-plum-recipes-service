@@ -11,7 +11,7 @@ properties([
         ])
 ])
 
-@Library("Infrastructure@DTSPO-29095/update-zap-image")
+@Library("Infrastructure@DTSPO-29095/change-registry")
 
 def type = "java"
 def product = "plum"
