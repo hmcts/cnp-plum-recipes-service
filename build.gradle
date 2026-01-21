@@ -3,7 +3,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath("org.flywaydb:flyway-database-postgresql:11.13.2")
+    classpath("org.flywaydb:flyway-database-postgresql:11.17.2")
   }
 }
 
@@ -14,7 +14,7 @@ plugins {
   id 'pmd'
   id 'jacoco'
   id 'io.spring.dependency-management' version '1.1.7'
-  id 'org.flywaydb.flyway' version '11.13.2'
+  id 'org.flywaydb.flyway' version '11.17.2'
   id 'org.springframework.boot' version '3.2.5'
   id 'org.owasp.dependencycheck' version '12.1.6'
   id 'com.github.ben-manes.versions' version '0.52.0'
@@ -39,7 +39,7 @@ java {
 }
 
 checkstyle {
-  toolVersion = '11.0.1'
+  toolVersion = '11.1.0'
   configFile = new File(rootDir, "checkstyle.xml")
   maxWarnings = 0
 }
@@ -116,16 +116,16 @@ dependencies {
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc'
   implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.8'
 
-  implementation group: 'org.flywaydb', name: 'flyway-core', version: '11.13.2'
-  implementation group: 'org.flywaydb', name: 'flyway-database-postgresql', version: '11.13.2'
+  implementation group: 'org.flywaydb', name: 'flyway-core', version: '11.17.2'
+  implementation group: 'org.flywaydb', name: 'flyway-database-postgresql', version: '11.17.2'
 
   implementation group: 'com.google.guava', name: 'guava', version: '33.5.0-jre'
 
   implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
 
-  implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.1.9'
-  implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.18'
-  implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.18'
+  implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '7.0.0'
+  implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.21'
+  implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.21'
 
   compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
