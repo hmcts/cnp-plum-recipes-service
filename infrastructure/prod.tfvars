@@ -4,4 +4,4 @@ rdb_backup_enabled                      = false
 family                                  = "C"
 sku_name                                = "Basic"
 rdb_backup_max_snapshot_count           = "1"
-pgsql_sku                               = "Standard_D2s_v3"
+pgsql_sku                               = "GP_Standard_D2s_v3"
