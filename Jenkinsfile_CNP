@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure")
+@Library("Infrastructure@feat/only-do-extended-wait-on-PRs")
 
 def type = "java"
 def product = "plum"
