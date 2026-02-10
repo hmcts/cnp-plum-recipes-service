@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@performance-stages-tidy")
+@Library("Infrastructure")
 
 def type = "java"
 def product = "plum"
@@ -34,14 +34,4 @@ withPipeline(type, product, component) {
   }
   expires(expiresAfter)
 
-  /*=====================================================
-  Dynatrace and Performance Configuration
-  =======================================================*/
-  enablePerformanceTestStages(timeout: 60)
-  //  enableGatlingLoadTests([
-  //    repo: 'https://github.com/hmcts/performance-testing.git',
-  //    branch: 'add-et-tests',
-  //    simulation: 'et.simulations.EtCitizenSimulation',
-  //    timeout: 10
-  //  ])
 }
