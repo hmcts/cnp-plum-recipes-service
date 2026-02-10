@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure")
+@Library("Infrastructure@DTSPO-29867/test-k8s-agent")
 
 def type = "java"
 def product = "plum"
