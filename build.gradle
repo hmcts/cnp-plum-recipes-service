@@ -219,4 +219,3 @@ tasks.withType(Test) {
 wrapper {
   distributionType = Wrapper.DistributionType.ALL
 }
-
