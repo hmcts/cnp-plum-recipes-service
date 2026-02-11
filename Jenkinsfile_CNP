@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@java-17-deprecation")
+@Library("Infrastructure@java-17-deprecation") _
 
 def type = "java"
 def product = "plum"
