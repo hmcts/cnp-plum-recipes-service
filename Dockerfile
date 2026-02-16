@@ -2,7 +2,6 @@
 ARG APP_INSIGHTS_AGENT_VERSION=3.7.4
 ARG PLATFORM=""
 FROM hmctspublic.azurecr.io/base/java${PLATFORM}:21-distroless
-# FROM hmctspublic.azurecr.io/base/java:17-distroless
 
 COPY build/libs/moj-rhubarb-recipes-service.jar /opt/app/
 COPY lib/applicationinsights.json /opt/app/
