@@ -1,13 +1,11 @@
 provider "azuread" {
-  use_aks_workload_identity = true
-  use_cli                   = false
-  use_msi                   = false
-  tenant_id                 = "531ff96d-0ae9-462a-8d2d-bec7c0b42082"
+  use_oidc = true
 }
 
 provider "azurerm" {
   features {}
-  use_oidc = true
+  use_aks_workload_identity = true
+  use_cli                   = false
 }
 
 provider "azurerm" {
