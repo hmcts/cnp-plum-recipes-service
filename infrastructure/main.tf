@@ -7,8 +7,7 @@ provider "azuread" {
 
 provider "azurerm" {
   features {}
-  use_aks_workload_identity = true
-  use_cli                   = false
+  use_oidc = true
 }
 
 provider "azurerm" {
