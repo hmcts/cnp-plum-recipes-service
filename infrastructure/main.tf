@@ -1,7 +1,7 @@
 provider "azuread" {
   use_aks_workload_identity = true
-  use_cli = false
-  tenant_id = "531ff96d-0ae9-462a-8d2d-bec7c0b42082"
+  use_cli                   = false
+  tenant_id                 = "531ff96d-0ae9-462a-8d2d-bec7c0b42082"
 }
 
 provider "azurerm" {
