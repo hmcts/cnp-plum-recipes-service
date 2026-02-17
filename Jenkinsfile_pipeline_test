@@ -17,7 +17,7 @@ properties([
   ])
 ])
 
-library "Infrastructure@dtspo-30033-java-17-deprecation"
+library "Infrastructure"
 
 def type = "java"
 def product = "crumble"
