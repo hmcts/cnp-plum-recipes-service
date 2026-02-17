@@ -1,10 +1,3 @@
-provider "azuread" {
-  use_aks_workload_identity = true
-  use_cli = false
-  use_msi = false
-  tenant_id = "531ff96d-0ae9-462a-8d2d-bec7c0b42082"
-}
-
 provider "azurerm" {
   features {}
   use_aks_workload_identity = true
@@ -80,52 +73,52 @@ resource "azurerm_key_vault_secret" "POSTGRES_DATABASE-V14" {
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
-module "postgresql_flexible" {
-  providers = {
-    azurerm.postgres_network = azurerm.postgres_network
-  }
+# module "postgresql_flexible" {
+#   providers = {
+#     azurerm.postgres_network = azurerm.postgres_network
+#   }
 
-  source        = "git::https://github.com/hmcts/terraform-module-postgresql-flexible?ref=master"
-  env           = var.env
-  product       = var.product
-  name          = "${var.product}-v14-flexible"
-  component     = var.component
-  business_area = "CFT"
-  location      = var.location
-  subnet_suffix = "expanded"
+#   source        = "git::https://github.com/hmcts/terraform-module-postgresql-flexible?ref=master"
+#   env           = var.env
+#   product       = var.product
+#   name          = "${var.product}-v14-flexible"
+#   component     = var.component
+#   business_area = "CFT"
+#   location      = var.location
+#   subnet_suffix = "expanded"
 
-  common_tags          = var.common_tags
-  admin_user_object_id = var.jenkins_AAD_objectId
-  pgsql_databases = [
-    {
-      name : "plum"
-    },
-    {
-      name : "rhubarb"
-    }
-  ]
+#   common_tags          = var.common_tags
+#   admin_user_object_id = var.jenkins_AAD_objectId
+#   pgsql_databases = [
+#     {
+#       name : "plum"
+#     },
+#     {
+#       name : "rhubarb"
+#     }
+#   ]
 
-  pgsql_version = "16"
-  pgsql_sku     = var.pgsql_sku
-}
+#   pgsql_version = "16"
+#   pgsql_sku     = var.pgsql_sku
+# }
 
-# endregion
+# # endregion
 
-module "plum-redis-storage" {
-  source                          = "git::https://github.com/hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency-4.x"
-  product                         = "${var.product}-${var.component}-session-storage"
-  location                        = var.location
-  env                             = var.env
-  private_endpoint_enabled        = true
-  redis_version                   = "6"
-  business_area                   = "cft"
-  public_network_access_enabled   = false
-  common_tags                     = var.common_tags
-  sku_name                        = var.sku_name
-  family                          = var.family
-  capacity                        = var.redis_capacity
-  rdb_backup_enabled              = var.rdb_backup_enabled
-  rdb_backup_frequency            = var.redis_backup_frequency
-  rdb_backup_max_snapshot_count   = var.rdb_backup_max_snapshot_count
-  rdb_storage_account_name_prefix = var.product
-}
+# module "plum-redis-storage" {
+#   source                          = "git::https://github.com/hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency-4.x"
+#   product                         = "${var.product}-${var.component}-session-storage"
+#   location                        = var.location
+#   env                             = var.env
+#   private_endpoint_enabled        = true
+#   redis_version                   = "6"
+#   business_area                   = "cft"
+#   public_network_access_enabled   = false
+#   common_tags                     = var.common_tags
+#   sku_name                        = var.sku_name
+#   family                          = var.family
+#   capacity                        = var.redis_capacity
+#   rdb_backup_enabled              = var.rdb_backup_enabled
+#   rdb_backup_frequency            = var.redis_backup_frequency
+#   rdb_backup_max_snapshot_count   = var.rdb_backup_max_snapshot_count
+#   rdb_storage_account_name_prefix = var.product
+# }
