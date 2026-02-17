@@ -1,5 +1,5 @@
 provider "azuread" {
-  use_msi = true
+  use_msi   = true
   tenant_id = "531ff96d-0ae9-462a-8d2d-bec7c0b42082"
 }
 
