@@ -74,7 +74,7 @@ module "postgresql_flexible" {
     azurerm.postgres_network = azurerm.postgres_network
   }
 
-  source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
+  source        = "git::https://github.com/hmcts/terraform-module-postgresql-flexible?ref=master"
   env           = var.env
   product       = var.product
   name          = "${var.product}-v14-flexible"
@@ -101,7 +101,7 @@ module "postgresql_flexible" {
 # endregion
 
 module "plum-redis-storage" {
-  source                          = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency-4.x"
+  source                          = "git::https://github.com/hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency-4.x"
   product                         = "${var.product}-${var.component}-session-storage"
   location                        = var.location
   env                             = var.env
