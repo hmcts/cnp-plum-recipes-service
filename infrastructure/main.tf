@@ -6,13 +6,13 @@ provider "azuread" {
 provider "azurerm" {
   features {}
   use_aks_workload_identity = true
-  use_cli = false
+  use_cli                   = false
 }
 
 provider "azurerm" {
   features {}
-  use_aks_workload_identity = true
-  use_cli = false
+  use_aks_workload_identity  = true
+  use_cli                    = false
   skip_provider_registration = true
   alias                      = "postgres_network"
   subscription_id            = var.aks_subscription_id
