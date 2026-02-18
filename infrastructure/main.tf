@@ -96,6 +96,8 @@ module "postgresql_flexible" {
 
   pgsql_version = "16"
   pgsql_sku     = var.pgsql_sku
+
+  service_criticality = var.service_criticality
 }
 
 # endregion
