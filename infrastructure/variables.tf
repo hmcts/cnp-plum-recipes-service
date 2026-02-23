@@ -80,3 +80,10 @@ variable "rdb_backup_max_snapshot_count" {
   type    = string
   default = "1"
 }
+
+variable "service_criticality" {
+  description = "Service criticality rating from 1-5."
+  type        = number
+  default     = 1
+}
+
