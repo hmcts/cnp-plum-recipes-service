@@ -9,6 +9,7 @@ provider "azurerm" {
   subscription_id            = var.aks_subscription_id
 }
 
+
 locals {
   app        = "recipe-backend"
   create_api = var.env != "preview" && var.env != "spreview"
