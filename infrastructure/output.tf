@@ -8,11 +8,6 @@ output "app_service_plan_id" {
   value       = module.app_service_plan.asp_id
 }
 
-output "app_service_plan_identity_principal_id" {
-  description = "Principal ID of the system-assigned managed identity on the plum App Service Plan."
-  value       = module.app_service_plan.asp_identity_principal_id
-}
-
 output "vaultName" {
   value = local.vault_name
 }
