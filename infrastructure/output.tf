@@ -3,6 +3,11 @@ output "api_gateway_url" {
   value = "https://core-api-mgmt-${var.env}.azure-api.net/${local.api_base_path}"
 }
 
+output "app_service_plan_id" {
+  description = "Resource ID of the plum App Service Plan."
+  value       = module.app_service_plan.asp_id
+}
+
 output "vaultName" {
   value = local.vault_name
 }
