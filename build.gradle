@@ -52,10 +52,9 @@ configurations.checkstyle {
 
 ext {
   lombokVersion = '1.18.44'
-  // Gatling 3.12+ requires Netty 4.2.x (IoHandle), but Spring Boot 3.2.x BOM pins Netty to 4.1.x.
-  // This project uses spring-boot-starter-web (not reactive), so Netty is only used by Gatling.
-  'netty.version' = '4.2.0.Final'
+  set('netty.version', '4.2.0.Final')
 }
+
 
 // https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
 dependencyCheck {
