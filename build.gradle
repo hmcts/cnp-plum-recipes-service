@@ -52,7 +52,9 @@ configurations.checkstyle {
 
 ext {
   lombokVersion = '1.18.44'
+  set('netty.version', '4.2.0.Final')
 }
+
 
 // https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
 dependencyCheck {
