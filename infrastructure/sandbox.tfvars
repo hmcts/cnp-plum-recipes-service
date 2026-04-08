@@ -4,6 +4,6 @@ family                                  = "C"
 sku_name                                = "Basic"
 rdb_backup_max_snapshot_count           = "1"
 pgsql_sku                               = "B_Standard_B1ms"
-service_criticality                     = 4
+service_criticality                     = 1
 asp_sku_size                            = "B1"
 asp_capacity                            = 1
