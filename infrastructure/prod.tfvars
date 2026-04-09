@@ -5,5 +5,3 @@ family                                  = "C"
 sku_name                                = "Basic"
 rdb_backup_max_snapshot_count           = "1"
 pgsql_sku                               = "GP_Standard_D2s_v3"
-service_criticality                     = 4
-backup_policy_name                      = "postgresql-test"
