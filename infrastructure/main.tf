@@ -9,6 +9,7 @@ provider "azurerm" {
   subscription_id            = var.aks_subscription_id
 }
 
+
 locals {
   app        = "recipe-backend"
   create_api = var.env != "preview" && var.env != "spreview"
@@ -74,7 +75,7 @@ module "postgresql_flexible" {
     azurerm.postgres_network = azurerm.postgres_network
   }
 
-  source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
+  source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=backup-vault-update"
   env           = var.env
   product       = var.product
   name          = "${var.product}-v14-flexible"
