@@ -5,3 +5,5 @@ family                                  = "C"
 sku_name                                = "Basic"
 rdb_backup_max_snapshot_count           = "1"
 pgsql_sku                               = "GP_Standard_D2s_v3"
+service_criticality                     = 4
+backup_policy_id                        = "/subscriptions/8999dec3-0104-4a27-94ee-6588559729d1/resourceGroups/mgmt-infra-prod-rg/providers/Microsoft.DataProtection/backupVaults/cnp-backup-vault/backupPolicies/postgresql-test"
