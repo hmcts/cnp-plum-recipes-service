@@ -133,3 +133,13 @@ module "app_service_plan" {
   asp_capacity        = var.asp_capacity
   common_tags         = var.common_tags
 }
+
+resource "azurerm_key_vault_secret" "redis_connection_string" {
+  name         = "redis-connection-string"
+  value        = "redis://ignore:${urlencode(module.plum-redis-storage.access_key)}@${module.plum-redis-storage.host_name}:${module.plum-redis-storage.redis_port}?tls=true"
+  key_vault_id = data.azurerm_key_vault.plum_key_vault.id
+}
+data "azurerm_key_vault" "plum_key_vault" {
+  name                = "plumsi-${var.env}"
+  resource_group_name = "plum-shared-infrastructure-${var.env}"
+}
