@@ -34,6 +34,12 @@ data "azurerm_subnet" "postgres" {
   virtual_network_name = "core-infra-vnet-${var.env}"
 }
 
+data "azurerm_subnet" "redis_private_endpoint" {
+  name                 = "core-infra-subnet-2-${var.env}"
+  resource_group_name  = "core-infra-${var.env}"
+  virtual_network_name = "core-infra-vnet-${var.env}"
+}
+
 data "azurerm_key_vault" "key_vault" {
   name                = local.vault_name
   resource_group_name = local.shared_infra_rg
@@ -156,7 +162,7 @@ module "managed_redis" {
   common_tags = var.common_tags
 
   public_network_access = "Disabled"
-  subnet_id             = data.azurerm_subnet.postgres.id
+  subnet_id             = data.azurerm_subnet.redis_private_endpoint.id
   private_dns_zone_ids  = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
 
   access_keys_authentication_enabled = true
