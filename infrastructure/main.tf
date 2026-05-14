@@ -151,7 +151,7 @@ module "managed_redis" {
 
   product     = var.product
   component   = var.component
-  project     = var.project
+  project     = "cft"
   env         = var.env
   location    = var.location
   common_tags = var.common_tags

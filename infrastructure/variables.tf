@@ -105,9 +105,3 @@ variable "asp_capacity" {
   default     = 1
 }
 
-variable "project" {
-  description = "Project name - sds or cft. Used by the Azure Managed Redis module."
-  type        = string
-  default     = "cft"
-}
-
