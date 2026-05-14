@@ -6,6 +6,3 @@ rdb_backup_max_snapshot_count           = "1"
 pgsql_sku                               = "B_Standard_B1ms"
 asp_sku_size                            = "B1"
 asp_capacity                            = 1
-
-redis_sku_name                   = "Balanced_B3" 
-persistence_rdb_backup_frequency = "6h"         
