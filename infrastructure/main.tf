@@ -34,6 +34,17 @@ data "azurerm_subnet" "postgres" {
   virtual_network_name = "core-infra-vnet-${var.env}"
 }
 
+data "azurerm_subnet" "redis" {
+  name                 = "core-infra-subnet-1-${var.env}"
+  resource_group_name  = "core-infra-${var.env}"
+  virtual_network_name = "core-infra-vnet-${var.env}"
+}
+
+data "azurerm_private_dns_zone" "redis" {
+  name                = "privatelink.redisenterprise.cache.azure.net"
+  resource_group_name = "core-infra-${var.env}"
+}
+
 data "azurerm_key_vault" "key_vault" {
   name                = local.vault_name
   resource_group_name = local.shared_infra_rg
@@ -101,26 +112,29 @@ module "postgresql_flexible" {
   backup_policy_id    = var.backup_policy_id
 }
 
-# endregion
-
 module "plum-redis-storage" {
-  source                          = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency-4.x"
-  product                         = "${var.product}-${var.component}-session-storage"
-  location                        = var.location
-  env                             = var.env
-  private_endpoint_enabled        = true
-  redis_version                   = "6"
-  business_area                   = "cft"
-  public_network_access_enabled   = false
-  common_tags                     = var.common_tags
-  sku_name                        = var.sku_name
-  family                          = var.family
-  capacity                        = var.redis_capacity
-  rdb_backup_enabled              = var.rdb_backup_enabled
-  rdb_backup_frequency            = var.redis_backup_frequency
-  rdb_backup_max_snapshot_count   = var.rdb_backup_max_snapshot_count
-  rdb_storage_account_name_prefix = var.product
+  source = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
+
+  product                            = var.product
+  component                          = "${var.component}-session-storage"
+  env                                = var.env
+  project                            = "cft"
+  location                           = var.location
+  common_tags                        = var.common_tags
+  sku_name                           = var.redis_sku_name
+  high_availability_enabled          = true
+  public_network_access              = "Disabled"
+  create_private_endpoint            = true
+  subnet_id                          = data.azurerm_subnet.redis.id
+  private_dns_zone_ids               = [data.azurerm_private_dns_zone.redis.id]
+  access_keys_authentication_enabled = true
+  client_protocol                    = "Encrypted"
+  clustering_policy                  = "OSSCluster"
+  eviction_policy                    = "VolatileLRU"
+  persistence_rdb_backup_frequency   = var.rdb_backup_enabled ? var.persistence_rdb_backup_frequency : null
 }
+
+
 
 module "app_service_plan" {
   source = "git@github.com:hmcts/cnp-module-app-service-plan?ref=master"
@@ -136,7 +150,7 @@ module "app_service_plan" {
 
 resource "azurerm_key_vault_secret" "redis_connection_string" {
   name         = "redis-connection-string"
-  value        = "redis://ignore:${urlencode(module.plum-redis-storage.access_key)}@${module.plum-redis-storage.host_name}:${module.plum-redis-storage.redis_port}?tls=true"
+  value        = "redis://ignore:${urlencode(module.plum-redis-storage.redis_cache_primary_access_key)}@${module.plum-redis-storage.redis_cache_hostname}:${module.plum-redis-storage.redis_cache_ssl_port}?tls=true"
   key_vault_id = data.azurerm_key_vault.plum_key_vault.id
 }
 data "azurerm_key_vault" "plum_key_vault" {

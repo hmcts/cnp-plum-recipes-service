@@ -49,36 +49,22 @@ variable "pgsql_sku" {
   default = "GP_Standard_D2s_v3"
 }
 
-# REDIS CACHE TESTING
-
 variable "rdb_backup_enabled" {
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
+  description = "Enable RDB persistence for Redis"
 }
 
-variable "sku_name" {
-  default     = "Basic"
-  description = "The SKU of Redis to use. Possible values are `Basic`, `Standard` and `Premium`."
+variable "redis_sku_name" {
+  type        = string
+  default     = "Balanced_B3"
+  description = "Azure Managed Redis SKU. Format: <Tier>_<Size>. Examples: Balanced_B3 (6GB), Balanced_B5 (13GB), MemoryOptimized_M10 (12GB)"
 }
 
-variable "family" {
-  default     = "C"
-  description = "The SKU family/pricing group to use. Valid values are `C` (for Basic/Standard SKU family) and `P` (for Premium). Use P for higher availability, but beware it costs a lot more."
-}
-
-variable "redis_capacity" {
-  default     = "1"
-  description = "The size of the Redis cache to deploy. Valid values are 1, 2, 3, 4, 5"
-}
-
-variable "redis_backup_frequency" {
-  default     = "360"
-  description = "The Backup Frequency in Minutes. Only supported on Premium SKUs. Possible values are: 15, 30, 60, 360, 720 and 1440"
-}
-
-variable "rdb_backup_max_snapshot_count" {
-  type    = string
-  default = "1"
+variable "persistence_rdb_backup_frequency" {
+  type        = string
+  default     = "6h"
+  description = "RDB backup frequency for Azure Managed Redis. Possible values: 1h, 6h, 12h"
 }
 
 variable "service_criticality" {

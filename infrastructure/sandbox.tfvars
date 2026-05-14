@@ -6,3 +6,8 @@ rdb_backup_max_snapshot_count           = "1"
 pgsql_sku                               = "B_Standard_B1ms"
 asp_sku_size                            = "B1"
 asp_capacity                            = 1
+
+
+# Redis configuration for demo
+redis_sku_name                   = "Balanced_B3" # 6GB, zone-redundant, suitable for non-prod
+persistence_rdb_backup_frequency = "6h"          # Default if backups enabled later
