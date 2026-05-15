@@ -100,8 +100,9 @@ module "postgresql_flexible" {
     }
   ]
 
-  pgsql_version = "16"
-  pgsql_sku     = var.pgsql_sku
+  pgsql_version    = "16"
+  pgsql_sku        = var.pgsql_sku
+  pgsql_storage_mb = var.env == "sandbox" ? 131072 : null
 
   service_criticality = var.service_criticality
   backup_policy_id    = var.backup_policy_id
