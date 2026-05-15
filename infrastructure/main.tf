@@ -34,6 +34,12 @@ data "azurerm_subnet" "postgres" {
   virtual_network_name = "core-infra-vnet-${var.env}"
 }
 
+data "azurerm_subnet" "redis_private_endpoint" {
+  name                 = "core-infra-subnet-2-${var.env}"
+  resource_group_name  = "core-infra-${var.env}"
+  virtual_network_name = "core-infra-vnet-${var.env}"
+}
+
 data "azurerm_key_vault" "key_vault" {
   name                = local.vault_name
   resource_group_name = local.shared_infra_rg
@@ -94,8 +100,9 @@ module "postgresql_flexible" {
     }
   ]
 
-  pgsql_version = "16"
-  pgsql_sku     = var.pgsql_sku
+  pgsql_version    = "16"
+  pgsql_sku        = var.pgsql_sku
+  pgsql_storage_mb = var.env == "sandbox" ? 131072 : null
 
   service_criticality = var.service_criticality
   backup_policy_id    = var.backup_policy_id
@@ -142,4 +149,23 @@ resource "azurerm_key_vault_secret" "redis_connection_string" {
 data "azurerm_key_vault" "plum_key_vault" {
   name                = "plumsi-${var.env}"
   resource_group_name = "plum-shared-infrastructure-${var.env}"
+}
+
+module "managed_redis" {
+  for_each = toset(var.env == "sandbox" ? ["sandbox"] : [])
+
+  source = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
+
+  product     = var.product
+  component   = var.component
+  env         = var.env
+  location    = var.location
+  common_tags = var.common_tags
+
+  public_network_access = "Disabled"
+  subnet_id             = data.azurerm_subnet.redis_private_endpoint.id
+  private_dns_zone_ids  = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
+
+  access_keys_authentication_enabled = true
+  persistence_rdb_backup_frequency   = "6h"
 }
