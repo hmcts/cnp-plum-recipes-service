@@ -113,27 +113,22 @@ module "postgresql_flexible" {
 }
 
 module "plum-redis-storage" {
-  source = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
-
-  product                            = var.product
-  component                          = "${var.component}-session-storage"
-  env                                = var.env
-  project                            = "cft"
-  location                           = var.location
-  common_tags                        = var.common_tags
-  sku_name                           = var.redis_sku_name
-  high_availability_enabled          = true
-  public_network_access              = "Disabled"
-  create_private_endpoint            = true
-  subnet_id                          = data.azurerm_subnet.redis.id
-  private_dns_zone_ids               = [data.azurerm_private_dns_zone.redis.id]
-  access_keys_authentication_enabled = true
-  client_protocol                    = "Encrypted"
-  clustering_policy                  = "OSSCluster"
-  eviction_policy                    = "VolatileLRU"
-  persistence_rdb_backup_frequency   = var.rdb_backup_enabled ? var.persistence_rdb_backup_frequency : null
-}
-
+  source                          = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency-4.x"
+  product                         = "${var.product}-${var.component}-session-storage"
+  location                        = var.location
+  env                             = var.env
+  private_endpoint_enabled        = true
+  redis_version                   = "6"
+  business_area                   = "cft"
+  public_network_access_enabled   = false
+  common_tags                     = var.common_tags
+  sku_name                        = var.sku_name
+  family                          = var.family
+  capacity                        = var.redis_capacity
+  rdb_backup_enabled              = var.rdb_backup_enabled
+  rdb_backup_frequency            = var.redis_backup_frequency
+  rdb_backup_max_snapshot_count   = var.rdb_backup_max_snapshot_count
+  rdb_storage_account_name_prefix = var.product
 
 
 module "app_service_plan" {
