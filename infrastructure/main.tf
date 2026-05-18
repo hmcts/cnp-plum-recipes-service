@@ -163,9 +163,10 @@ module "managed_redis" {
   location    = var.location
   common_tags = var.common_tags
 
-  public_network_access = "Disabled"
-  subnet_id             = data.azurerm_subnet.redis_private_endpoint.id
-  private_dns_zone_ids  = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
+  public_network_access   = "Disabled"
+  create_private_endpoint = true
+  subnet_id               = data.azurerm_subnet.redis_private_endpoint.id
+  private_dns_zone_ids    = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
 
   access_keys_authentication_enabled = true
   persistence_rdb_backup_frequency   = "6h"
