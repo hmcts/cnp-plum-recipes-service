@@ -151,8 +151,9 @@ data "azurerm_key_vault" "plum_key_vault" {
   resource_group_name = "plum-shared-infrastructure-${var.env}"
 }
 
+
 module "managed_redis" {
-  for_each = toset(var.env == "sandbox" ? ["sandbox"] : [])
+  for_each = toset(var.env == "aat" ? ["aat"] : [])
 
   source = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
 
