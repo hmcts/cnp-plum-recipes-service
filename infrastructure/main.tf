@@ -108,6 +108,8 @@ module "postgresql_flexible" {
   backup_policy_id    = var.backup_policy_id
 }
 
+# endregion
+
 module "plum-redis-storage" {
   source                          = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency-4.x"
   product                         = "${var.product}-${var.component}-session-storage"
@@ -125,7 +127,6 @@ module "plum-redis-storage" {
   rdb_backup_frequency            = var.redis_backup_frequency
   rdb_backup_max_snapshot_count   = var.rdb_backup_max_snapshot_count
   rdb_storage_account_name_prefix = var.product
-
 }
 
 module "app_service_plan" {
@@ -142,7 +143,7 @@ module "app_service_plan" {
 
 resource "azurerm_key_vault_secret" "redis_connection_string" {
   name         = "redis-connection-string"
-  value        = "redis://ignore:${urlencode(module.plum-redis-storage.redis_cache_primary_access_key)}@${module.plum-redis-storage.redis_cache_hostname}:${module.plum-redis-storage.redis_cache_ssl_port}?tls=true"
+  value        = "redis://ignore:${urlencode(module.plum-redis-storage.access_key)}@${module.plum-redis-storage.host_name}:${module.plum-redis-storage.redis_port}?tls=true"
   key_vault_id = data.azurerm_key_vault.plum_key_vault.id
 }
 data "azurerm_key_vault" "plum_key_vault" {
