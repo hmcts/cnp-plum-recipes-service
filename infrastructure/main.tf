@@ -142,8 +142,12 @@ module "app_service_plan" {
 }
 
 resource "azurerm_key_vault_secret" "redis_connection_string" {
-  name         = "redis-connection-string"
-  value        = "redis://ignore:${urlencode(module.plum-redis-storage.access_key)}@${module.plum-redis-storage.host_name}:${module.plum-redis-storage.redis_port}?tls=true"
+  name = "redis-connection-string"
+  value = var.env == "sandbox" ? (
+    "rediss://default:${urlencode(module.managed_redis["sandbox"].primary_access_key)}@${module.managed_redis["sandbox"].hostname}:${module.managed_redis["sandbox"].port}"
+    ) : (
+    "redis://ignore:${urlencode(module.plum-redis-storage.access_key)}@${module.plum-redis-storage.host_name}:${module.plum-redis-storage.redis_port}?tls=true"
+  )
   key_vault_id = data.azurerm_key_vault.plum_key_vault.id
 }
 data "azurerm_key_vault" "plum_key_vault" {
@@ -163,6 +167,8 @@ module "managed_redis" {
   env         = var.env
   location    = var.location
   common_tags = var.common_tags
+
+  sku_name = var.env == "sandbox" ? "Balanced_B0" : "Balanced_B3"
 
   public_network_access   = "Disabled"
   create_private_endpoint = true
