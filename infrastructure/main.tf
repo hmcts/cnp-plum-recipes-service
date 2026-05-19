@@ -34,15 +34,10 @@ data "azurerm_subnet" "postgres" {
   virtual_network_name = "core-infra-vnet-${var.env}"
 }
 
-data "azurerm_subnet" "redis" {
-  name                 = "core-infra-subnet-1-${var.env}"
+data "azurerm_subnet" "redis_private_endpoint" {
+  name                 = "core-infra-subnet-2-${var.env}"
   resource_group_name  = "core-infra-${var.env}"
   virtual_network_name = "core-infra-vnet-${var.env}"
-}
-
-data "azurerm_private_dns_zone" "redis" {
-  name                = "privatelink.redisenterprise.cache.azure.net"
-  resource_group_name = "core-infra-${var.env}"
 }
 
 data "azurerm_key_vault" "key_vault" {
@@ -105,8 +100,9 @@ module "postgresql_flexible" {
     }
   ]
 
-  pgsql_version = "16"
-  pgsql_sku     = var.pgsql_sku
+  pgsql_version    = "16"
+  pgsql_sku        = var.pgsql_sku
+  pgsql_storage_mb = var.env == "sandbox" ? 131072 : null
 
   service_criticality = var.service_criticality
   backup_policy_id    = var.backup_policy_id
@@ -165,9 +161,10 @@ module "managed_redis" {
   location    = var.location
   common_tags = var.common_tags
 
-  public_network_access = "Disabled"
-  subnet_id             = data.azurerm_subnet.redis_private_endpoint.id
-  private_dns_zone_ids  = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
+  public_network_access   = "Disabled"
+  create_private_endpoint = true
+  subnet_id               = data.azurerm_subnet.redis_private_endpoint.id
+  private_dns_zone_ids    = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
 
   access_keys_authentication_enabled = true
   persistence_rdb_backup_frequency   = "6h"
