@@ -143,7 +143,7 @@ module "app_service_plan" {
 
 resource "azurerm_key_vault_secret" "redis_connection_string" {
   name = "redis-connection-string"
-  value = contains(["sandbox", "aat", "ithc", "perftest"], var.env) ? (
+  value = contains(["sandbox", "aat", "ithc", "demo", "perftest"], var.env) ? (
     "rediss://default:${urlencode(module.managed_redis[var.env].primary_access_key)}@${module.managed_redis[var.env].hostname}:${module.managed_redis[var.env].port}"
     ) : (
     "redis://ignore:${urlencode(module.plum-redis-storage.access_key)}@${module.plum-redis-storage.host_name}:${module.plum-redis-storage.redis_port}?tls=true"
@@ -157,10 +157,8 @@ data "azurerm_key_vault" "plum_key_vault" {
 
 
 module "managed_redis" {
-  for_each = toset(contains(["sandbox", "aat", "ithc", "perftest"], var.env) ? [var.env] : [])
-
-
-  source = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
+  for_each = toset(contains(["sandbox", "aat", "ithc", "demo", "perftest"], var.env) ? [var.env] : [])
+  source   = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
 
   product     = var.product
   component   = var.component
