@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Tagged")
+@Library("Infrastructure@DTSPO-30146-add-deploment-controls")
 
 def type = "java"
 def product = "plum"
