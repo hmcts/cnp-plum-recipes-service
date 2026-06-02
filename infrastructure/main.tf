@@ -110,25 +110,6 @@ module "postgresql_flexible" {
 
 # endregion
 
-module "plum-redis-storage" {
-  source                          = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency-4.x"
-  product                         = "${var.product}-${var.component}-session-storage"
-  location                        = var.location
-  env                             = var.env
-  private_endpoint_enabled        = true
-  redis_version                   = "6"
-  business_area                   = "cft"
-  public_network_access_enabled   = false
-  common_tags                     = var.common_tags
-  sku_name                        = var.sku_name
-  family                          = var.family
-  capacity                        = var.redis_capacity
-  rdb_backup_enabled              = var.rdb_backup_enabled
-  rdb_backup_frequency            = var.redis_backup_frequency
-  rdb_backup_max_snapshot_count   = var.rdb_backup_max_snapshot_count
-  rdb_storage_account_name_prefix = var.product
-}
-
 module "app_service_plan" {
   source = "git@github.com:hmcts/cnp-module-app-service-plan?ref=master"
 
@@ -143,7 +124,7 @@ module "app_service_plan" {
 
 resource "azurerm_key_vault_secret" "redis_connection_string" {
   name         = "redis-connection-string"
-  value        = "redis://ignore:${urlencode(module.plum-redis-storage.access_key)}@${module.plum-redis-storage.host_name}:${module.plum-redis-storage.redis_port}?tls=true"
+  value        = "rediss://default:${urlencode(module.managed_redis[var.env].primary_access_key)}@${module.managed_redis[var.env].hostname}:${module.managed_redis[var.env].port}"
   key_vault_id = data.azurerm_key_vault.plum_key_vault.id
 }
 data "azurerm_key_vault" "plum_key_vault" {
@@ -151,10 +132,10 @@ data "azurerm_key_vault" "plum_key_vault" {
   resource_group_name = "plum-shared-infrastructure-${var.env}"
 }
 
-module "managed_redis" {
-  for_each = toset(var.env == "sandbox" ? ["sandbox"] : [])
 
-  source = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
+module "managed_redis" {
+  for_each = toset([var.env])
+  source   = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
 
   product     = var.product
   component   = var.component
@@ -162,9 +143,12 @@ module "managed_redis" {
   location    = var.location
   common_tags = var.common_tags
 
-  public_network_access = "Disabled"
-  subnet_id             = data.azurerm_subnet.redis_private_endpoint.id
-  private_dns_zone_ids  = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
+  sku_name = "Balanced_B0"
+
+  public_network_access   = "Disabled"
+  create_private_endpoint = true
+  subnet_id               = data.azurerm_subnet.redis_private_endpoint.id
+  private_dns_zone_ids    = ["/subscriptions/${var.private_dns_subscription_id}/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.redis.azure.net"]
 
   access_keys_authentication_enabled = true
   persistence_rdb_backup_frequency   = "6h"
