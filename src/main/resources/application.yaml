@@ -38,3 +38,11 @@ management:
       base-path: "/"
   security:
     enabled: false
+
+recipe:
+  seed:
+    id: ${RECIPE_SEED_ID:seed-recipe-1}
+    user-id: ${RECIPE_SEED_USER_ID:seed-user}
+    name: ${RECIPE_SEED_NAME:Seeded Tomato Pasta}
+    ingredients: ${RECIPE_SEED_INGREDIENTS:tomatoes,pasta,olive oil,garlic}
+    method: ${RECIPE_SEED_METHOD:Boil pasta. Make sauce. Combine.}
