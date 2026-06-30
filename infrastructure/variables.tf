@@ -93,15 +93,16 @@ variable "backup_policy_id" {
   default     = "/subscriptions/8999dec3-0104-4a27-94ee-6588559729d1/resourceGroups/mgmt-infra-prod-rg/providers/Microsoft.DataProtection/backupVaults/cnp-backup-vault/backupPolicies/postgresql-crit4-5"
 }
 
-variable "asp_sku_size" {
-  type        = string
-  description = "SKU size for the App Service Plan (e.g. B1, P1v3)."
-  default     = "B1"
-}
-
-variable "asp_capacity" {
-  description = "Number of workers for the App Service Plan."
-  type        = number
-  default     = 1
-}
+# DTSPO-32691: temporarily disabled with the App Service Plan module.
+# variable "asp_sku_size" {
+#   type        = string
+#   description = "SKU size for the App Service Plan (e.g. B1, P1v3)."
+#   default     = "B1"
+# }
+#
+# variable "asp_capacity" {
+#   description = "Number of workers for the App Service Plan."
+#   type        = number
+#   default     = 1
+# }
 
