@@ -28,7 +28,7 @@ version = '0.0.1'
 
 pmd {
   toolVersion = "6.55.0"
-  reportsDir = file("$project.buildDir/reports/pmd")
+  reportsDir = layout.buildDirectory.dir("reports/pmd").get().asFile
   ruleSetFiles = files("config/pmd/ruleset.xml")
 }
 
@@ -195,7 +195,7 @@ sonarqube {
   properties {
     property "sonar.projectName", "cnp-plum-recipes-service"
     property "sonar.projectKey", "cnp-plum-recipes-service"
-    property "sonar.dependencyCheck.reportPath", "${project.buildDir}/reports/dependency-check-report.xml"
+    property "sonar.dependencyCheck.reportPath", "${layout.buildDirectory.get().asFile}/reports/dependency-check-report.xml"
     property "sonar.coverage.exclusions", "**/config/**, **Exception**"
   }
 }
