@@ -15,7 +15,7 @@ plugins {
   id 'jacoco'
   id 'io.spring.dependency-management' version '1.1.7'
   id 'org.flywaydb.flyway' version '11.20.3'
-  id 'org.springframework.boot' version '3.2.5'
+  id 'org.springframework.boot' version '3.5.5'
   id 'org.owasp.dependencycheck' version '12.2.2'
   id 'com.github.ben-manes.versions' version '0.54.0'
   id 'se.patrikerdes.use-latest-versions' version '0.2.19'
@@ -28,13 +28,13 @@ version = '0.0.1'
 
 pmd {
   toolVersion = "6.55.0"
-  reportsDir = file("$project.buildDir/reports/pmd")
+  reportsDir = layout.buildDirectory.dir("reports/pmd").get().asFile
   ruleSetFiles = files("config/pmd/ruleset.xml")
 }
 
 java {
   toolchain {
-    languageVersion = JavaLanguageVersion.of(21)
+    languageVersion = JavaLanguageVersion.of(25)
   }
 }
 
@@ -101,16 +101,6 @@ dependencyUpdates.resolutionStrategy = {
   }
 }
 
-configurations.all {
-  resolutionStrategy {
-    eachDependency { DependencyResolveDetails details ->
-      if (details.requested.group == 'ch.qos.logback') {
-        details.useVersion '1.4.14'
-      }
-    }
-  }
-}
-
 dependencies {
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
@@ -123,7 +113,7 @@ dependencies {
 
   implementation group: 'com.google.guava', name: 'guava', version: '33.6.0-jre'
 
-  implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
+  implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.8.6'
 
   implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '8.0.0'
   implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.37'
@@ -205,7 +195,7 @@ sonarqube {
   properties {
     property "sonar.projectName", "cnp-plum-recipes-service"
     property "sonar.projectKey", "cnp-plum-recipes-service"
-    property "sonar.dependencyCheck.reportPath", "${project.buildDir}/reports/dependency-check-report.xml"
+    property "sonar.dependencyCheck.reportPath", "${layout.buildDirectory.get().asFile}/reports/dependency-check-report.xml"
     property "sonar.coverage.exclusions", "**/config/**, **Exception**"
   }
 }
