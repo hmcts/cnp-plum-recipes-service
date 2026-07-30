@@ -208,7 +208,6 @@ tasks.withType(Test) {
   useJUnitPlatform()
 }
 
-// Gatling simulations must target Java 17 as the Gatling runner uses Java 17
 tasks.named('compileGatlingScala') {
   scalaCompileOptions.additionalParameters = ['-release', '17']
 }
