@@ -88,6 +88,7 @@ module "postgresql_flexible" {
   business_area = "CFT"
   location      = var.location
   subnet_suffix = "expanded"
+  high_availability = var.env == "perftest" || var.env == "test" ? false : null
 
   common_tags          = var.common_tags
   admin_user_object_id = var.jenkins_AAD_objectId
