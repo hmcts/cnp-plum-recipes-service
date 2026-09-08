@@ -81,14 +81,14 @@ module "postgresql_flexible" {
     azurerm.postgres_network = azurerm.postgres_network
   }
 
-  source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
-  env           = var.env
-  product       = var.product
-  name          = local.postgres_server_name
-  component     = var.component
-  business_area = "CFT"
-  location      = var.location
-  subnet_suffix = "expanded"
+  source            = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
+  env               = var.env
+  product           = var.product
+  name              = local.postgres_server_name
+  component         = var.component
+  business_area     = "CFT"
+  location          = var.location
+  subnet_suffix     = "expanded"
   high_availability = var.env == "perftest" || var.env == "test" ? false : null
 
   common_tags          = var.common_tags
@@ -141,7 +141,7 @@ data "azurerm_key_vault" "plum_key_vault" {
 module "managed_redis" {
   for_each = toset((var.env == "sandbox" || var.env == "aat") ? [var.env] : [])
 
-  source   = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
+  source = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
 
   product     = var.product
   component   = var.component
