@@ -4,9 +4,9 @@ provider "azurerm" {
 
 provider "azurerm" {
   features {}
-  skip_provider_registration = true
-  alias                      = "postgres_network"
-  subscription_id            = var.aks_subscription_id
+  resource_provider_registrations = "none"
+  alias                           = "postgres_network"
+  subscription_id                 = var.aks_subscription_id
 }
 
 locals {
@@ -89,6 +89,7 @@ module "postgresql_flexible" {
   business_area = "CFT"
   location      = var.location
   subnet_suffix = "expanded"
+  high_availability = var.env == "perftest" || var.env == "test" ? false : null
 
   common_tags          = var.common_tags
   admin_user_object_id = var.jenkins_AAD_objectId
@@ -111,40 +112,23 @@ module "postgresql_flexible" {
 
 # endregion
 
-module "plum-redis-storage" {
-  source                          = "git@github.com:hmcts/cnp-module-redis?ref=DTSPO-17012-data-persistency-4.x"
-  product                         = "${var.product}-${var.component}-session-storage"
-  location                        = var.location
-  env                             = var.env
-  private_endpoint_enabled        = true
-  redis_version                   = "6"
-  business_area                   = "cft"
-  public_network_access_enabled   = false
-  common_tags                     = var.common_tags
-  sku_name                        = var.sku_name
-  family                          = var.family
-  capacity                        = var.redis_capacity
-  rdb_backup_enabled              = var.rdb_backup_enabled
-  rdb_backup_frequency            = var.redis_backup_frequency
-  rdb_backup_max_snapshot_count   = var.rdb_backup_max_snapshot_count
-  rdb_storage_account_name_prefix = var.product
-}
-
-module "app_service_plan" {
-  source = "git@github.com:hmcts/cnp-module-app-service-plan?ref=master"
-
-  asp_name            = var.product
-  env                 = var.env
-  location            = var.location
-  resource_group_name = local.shared_infra_rg
-  asp_sku_size        = var.asp_sku_size
-  asp_capacity        = var.asp_capacity
-  common_tags         = var.common_tags
-}
+# DTSPO-32691: temporarily disabled to destroy the unused sandbox App Service Plan.
+# Re-enable (uncomment) to recreate it.
+# module "app_service_plan" {
+#   source = "git@github.com:hmcts/cnp-module-app-service-plan?ref=master"
+#
+#   asp_name            = var.product
+#   env                 = var.env
+#   location            = var.location
+#   resource_group_name = local.shared_infra_rg
+#   asp_sku_size        = var.asp_sku_size
+#   asp_capacity        = var.asp_capacity
+#   common_tags         = var.common_tags
+# }
 
 resource "azurerm_key_vault_secret" "redis_connection_string" {
   name         = "redis-connection-string"
-  value        = "redis://ignore:${urlencode(module.plum-redis-storage.access_key)}@${module.plum-redis-storage.host_name}:${module.plum-redis-storage.redis_port}?tls=true"
+  value        = "rediss://default:${urlencode(module.managed_redis[var.env].primary_access_key)}@${module.managed_redis[var.env].hostname}:${module.managed_redis[var.env].port}"
   key_vault_id = data.azurerm_key_vault.plum_key_vault.id
 }
 data "azurerm_key_vault" "plum_key_vault" {
@@ -153,16 +137,19 @@ data "azurerm_key_vault" "plum_key_vault" {
 }
 
 
+
 module "managed_redis" {
   for_each = toset((var.env == "sandbox" || var.env == "aat") ? [var.env] : [])
 
-  source = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
+  source   = "git@github.com:hmcts/terraform-module-azure-managed-redis?ref=main"
 
   product     = var.product
   component   = var.component
   env         = var.env
   location    = var.location
   common_tags = var.common_tags
+
+  sku_name = "Balanced_B0"
 
   public_network_access   = "Disabled"
   create_private_endpoint = true
