@@ -26,6 +26,7 @@ locals {
   api_base_path             = "${var.product}-recipes-api"
   shared_infra_rg           = "${var.product}-shared-infrastructure-${var.env}"
   vault_name                = "${var.product}si-${var.env}"
+  postgres_server_name      = var.postgres_server_name != "" ? var.postgres_server_name : "${var.product}-v14-flexible"
 }
 
 data "azurerm_subnet" "postgres" {
@@ -83,7 +84,7 @@ module "postgresql_flexible" {
   source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
   env           = var.env
   product       = var.product
-  name          = "${var.product}-v14-flexible"
+  name          = local.postgres_server_name
   component     = var.component
   business_area = "CFT"
   location      = var.location
@@ -100,7 +101,7 @@ module "postgresql_flexible" {
     }
   ]
 
-  pgsql_version    = "16"
+  pgsql_version    = var.pgsql_version
   pgsql_sku        = var.pgsql_sku
   pgsql_storage_mb = var.env == "sandbox" ? 131072 : null
 
