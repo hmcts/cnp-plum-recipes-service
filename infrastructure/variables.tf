@@ -49,6 +49,18 @@ variable "pgsql_sku" {
   default = "GP_Standard_D2s_v3"
 }
 
+variable "pgsql_version" {
+  description = "PostgreSQL major version for the Flexible Server."
+  type        = string
+  default     = "16"
+}
+
+variable "postgres_server_name" {
+  description = "Optional PostgreSQL server name override, used for isolated test servers."
+  type        = string
+  default     = ""
+}
+
 # REDIS CACHE TESTING
 
 variable "rdb_backup_enabled" {
