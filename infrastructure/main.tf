@@ -26,7 +26,6 @@ locals {
   api_base_path             = "${var.product}-recipes-api"
   shared_infra_rg           = "${var.product}-shared-infrastructure-${var.env}"
   vault_name                = "${var.product}si-${var.env}"
-  postgres_server_name      = var.postgres_server_name != "" ? var.postgres_server_name : "${var.product}-v14-flexible"
 }
 
 data "azurerm_subnet" "postgres" {
@@ -84,7 +83,7 @@ module "postgresql_flexible" {
   source            = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
   env               = var.env
   product           = var.product
-  name              = local.postgres_server_name
+  name              = "${var.product}-v14-flexible"
   component         = var.component
   business_area     = "CFT"
   location          = var.location
@@ -102,9 +101,44 @@ module "postgresql_flexible" {
     }
   ]
 
-  pgsql_version    = var.pgsql_version
+  pgsql_version    = "16"
   pgsql_sku        = var.pgsql_sku
   pgsql_storage_mb = var.env == "sandbox" ? 131072 : null
+
+  service_criticality = var.service_criticality
+  backup_policy_id    = var.backup_policy_id
+}
+
+module "postgresql_flexible_v14_upgrade_test" {
+  for_each = toset(var.env == "sandbox" ? ["sandbox"] : [])
+
+  providers = {
+    azurerm.postgres_network = azurerm.postgres_network
+  }
+
+  source        = "git@github.com:hmcts/terraform-module-postgresql-flexible?ref=master"
+  env           = var.env
+  product       = var.product
+  name          = "${var.product}-v14-upgrade-test-flexible"
+  component     = var.component
+  business_area = "CFT"
+  location      = var.location
+  subnet_suffix = "expanded"
+
+  common_tags          = var.common_tags
+  admin_user_object_id = var.jenkins_AAD_objectId
+  pgsql_databases = [
+    {
+      name : "plum"
+    },
+    {
+      name : "rhubarb"
+    }
+  ]
+
+  pgsql_version    = "14"
+  pgsql_sku        = var.pgsql_sku
+  pgsql_storage_mb = 131072
 
   service_criticality = var.service_criticality
   backup_policy_id    = var.backup_policy_id
