@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>hmcts/.github//renovate/automerge-all",
-    "local>hmcts/.github:renovate-config"
+    "local>hmcts/.github:renovate-config#DTSPO-35003-java-chart-lts-filter"
   ],
   "packageRules": [
     {
