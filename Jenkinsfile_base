@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@nonsemvertag")
+@Library("Infrastructure@dtspo-35207-always-allow-release-version-tags")
 
 def type = "java"
 def product = "plum"
