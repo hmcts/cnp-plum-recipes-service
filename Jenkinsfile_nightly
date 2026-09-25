@@ -11,7 +11,7 @@ properties([
   ]),
 ])
 
-@Library("Infrastructure@dtspo-35207-always-allow-release-version-tags")
+@Library("Infrastructure@2.10.0")
 
 def type = "java"
 def product = "plum"

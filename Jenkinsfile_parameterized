@@ -1,5 +1,5 @@
 #!groovy
-@Library(value="Infrastructure@dtspo-35207-always-allow-release-version-tags", changelog=false)
+@Library(value="Infrastructure@2.10.0", changelog=false)
 
 List<LinkedHashMap<String, Object>> apiTestSecrets = [
   secret('test-client-key-store', 'TEST_CLIENT_KEY_STORE'),
