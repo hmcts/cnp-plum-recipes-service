@@ -13,17 +13,17 @@
 
 properties([
   parameters([
-    string(name: 'LIB_VERSION', defaultValue: 'master', description: 'Branch name of pipeline library to use')
+    string(name: 'LIB_VERSION', defaultValue: 'DTSPO-34664', description: 'Branch name of pipeline library to use')
   ])
 ])
 
 library "Infrastructure@${params.LIB_VERSION}"
 
 def type = "java"
-def product = "crumble"
+def product = "plum"
 def app = "recipe-backend"
 
-def apiTestSecrets = [ 'crumblesi-${env}' :
+def apiTestSecrets = [ 'plumsi-${env}' :
   [
     secret('test-client-key-store', 'TEST_CLIENT_KEY_STORE'),
     secret('test-client-key-store-password', 'TEST_CLIENT_KEY_STORE_PASSWORD'),
