@@ -215,4 +215,3 @@ tasks.named('compileGatlingScala') {
 wrapper {
   distributionType = Wrapper.DistributionType.ALL
 }
-
