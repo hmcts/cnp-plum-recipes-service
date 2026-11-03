@@ -35,9 +35,8 @@ withPipeline(type, product, component) {
   }
   expires(expiresAfter)
 
-  // plumsi-aat does not hold fortify-on-demand-username/password: the scan should warn and authenticate
-  // with the Jenkins fortify-on-demand-oauth credential instead of failing the build. Without a PR label
-  // this exercises the enableFortifyScan() path; add enable_fortify_scan for the PR-label path.
+  // Regression check: plumsi-aat DOES hold fortify-on-demand-username/password, so this takes the normal
+  // path (secrets loaded, no warning). The missing-secrets case is tested in Jenkinsfile_pipeline_test.
   enableFortifyScan('plumsi-aat')
 
 }
