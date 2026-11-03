@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@2.10.1") _
+@Library("Infrastructure@move-allowed-library-branches-config") _
 
 def type = "java"
 def product = "plum"
