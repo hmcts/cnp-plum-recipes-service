@@ -1,6 +1,7 @@
 #!groovy
 
-@Library("Infrastructure@2.10.1") _
+// DTSPO-36210: testing hmcts/cnp-jenkins-library#1602. Do not merge.
+@Library("Infrastructure@DTSPO-36210-fortify-optional-vault-secrets") _
 
 def type = "java"
 def product = "plum"
@@ -33,5 +34,9 @@ withPipeline(type, product, component) {
     loadVaultSecrets(apiTestSecrets)
   }
   expires(expiresAfter)
+
+  // Regression check: plumsi-aat DOES hold fortify-on-demand-username/password, so this takes the normal
+  // path (secrets loaded, no warning). The missing-secrets case is tested in Jenkinsfile_pipeline_test.
+  enableFortifyScan('plumsi-aat')
 
 }

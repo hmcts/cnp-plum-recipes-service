@@ -17,7 +17,9 @@ properties([
   ])
 ])
 
-library "Infrastructure@${params.LIB_VERSION}"
+// DTSPO-36210 test, do not merge: pinned to the fix branch rather than params.LIB_VERSION, because a
+// changed parameter default only takes effect from the build after the one that registers it.
+library "Infrastructure@DTSPO-36210-fortify-optional-vault-secrets"
 
 def type = "java"
 def product = "crumble"
@@ -53,4 +55,8 @@ withPipeline(type, product, app) {
     loadVaultSecrets(apiTestSecrets)
   }
   expires(expiresAfter)
+
+  // DTSPO-36210: crumblesi-sandbox does not hold fortify-on-demand-username/password. The scan should warn and
+  // authenticate with the Jenkins fortify-on-demand-oauth credential instead of failing the build.
+  enableFortifyScan('crumblesi-sandbox')
 }
