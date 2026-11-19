@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure@fixforjavavuln") _
+@Library("Infrastructure@fixforjavavuln")
 
 def type = "java"
 def product = "plum"
